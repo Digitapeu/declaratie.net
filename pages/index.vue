@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <div id="hashtag">#stamacasa</div>
         <Logo />
         <p>Completeaza usor si rapid <br/>declaratia pe proprie raspundere ( <strong>obligatorie</strong> ) <br/>conform ordonantei militare nr. 3</p>
         
@@ -33,7 +34,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
-import Logo from '@/components/Logo.vue';
+import Logo from '@/components/Logo';
 import Drawer from '@/components/Drawer';
 import Backdrop from '@/components/Backdrop';
 import Declaration from '@/components/Declaration';
@@ -66,7 +67,26 @@ export default class Index extends Vue {
     position: relative;
     z-index: 10;
 
-    p { text-align: center; width: 100%; padding: 10px; box-sizing: border-box;}
+    #hashtag {
+        position: absolute;
+        top: 20px;
+        font-size: 30px;
+        font-weight: bold;
+        color: red;
+        transform: translate3D(0, 45deg, 0);
+    }
+
+    @media screen and (min-width: 990px){
+        background-color: unset;
+    }
+
+    p { 
+        text-align: center; width: 100%; padding: 10px; box-sizing: border-box;
+
+        @media screen and (max-width: 350px){
+            font-size: 12px;
+        }
+    }
 
     .el-row {
         width: 100%;
@@ -81,6 +101,11 @@ export default class Index extends Vue {
         font-size: 24px;
         text-decoration: none;
         margin: 15px auto;
+
+        @media screen and (max-width: 350px){
+            font-size: 18px;
+            width: 90%;
+        }
     }
 
     .forms {

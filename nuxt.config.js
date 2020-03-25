@@ -58,6 +58,26 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config, ctx) {
+
+      config.module.rules.filter(r => r.test.toString().includes('svg')).forEach(r => {
+          r.test = /\.(png|jpe?g|gif)$/
+      });
+
+      config.module.rules.push({
+            test: /\.svg$/,
+            oneOf: [{
+                    resourceQuery: /inline/,
+                    loader: 'vue-svg-loader',
+                },
+                {
+                    loader: 'file-loader',
+                    query: {
+                        name: `/[ext]/[sha512:hash:base64:7].[ext]`,
+                    },
+                }
+            ],
+        });
+    }
   }
 }

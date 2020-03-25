@@ -17,6 +17,8 @@
   },
   "devDependencies": {
     "@nuxt/typescript-build": "^0.6.0",
+    "svg-inline-loader": "^0.8.0",
+    "vue-svg-loader": "^0.5.0",
     "less": "^3.11.1",
     "less-loader": "^5.0.0"
   }

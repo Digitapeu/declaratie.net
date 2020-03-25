@@ -56,12 +56,14 @@
                     <li>Declararea necorespunzătoare a adevărului, făcută unei persoane dintre cele prevăzute in art. 175 sau unei unități în care aceasta își desfășoară activitatea în vederea producerii unei consecințe juridice, pentru sine sau pentru altul, atunci când, potrivit legii ori împrejurarilor, declarația făcută servește la producerea acelei consecințe, se depedpește de la 3 luni la 2 ani sau cu amendă.</li>
                     <li>Se completează motivul/cauzele deplasării.</li>
                 </ol>
+            </content>
 
+            <template #footer>
                 <el-row id="buttons">
                     <el-button type="primary" @click>Print</el-button>
                     <el-button type="warning" @click>Salveaza .pdf</el-button>
                 </el-row>
-            </content>
+            </template>
 
             </Drawer>
      </Backdrop>
@@ -89,6 +91,9 @@ content {
     }
 
     ol.activities {
+        border: 1px solid #000;
+        padding: 20px 40px;
+
         li { margin: 0 0 10px; }
         li.unchecked {
             color: #ccc;
@@ -102,8 +107,9 @@ content {
             font-size: 12px;
         }
     }
+}
 
-    #buttons {
+#buttons {
         position: fixed;
         bottom: 0;
         left: 0;
@@ -123,5 +129,4 @@ content {
             font-size: 20px;
         }
     }
-}
 </style>

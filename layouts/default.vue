@@ -1,8 +1,22 @@
 <template>
-    <nuxt keep-alive />
+    <div>
+      <nuxt keep-alive />
+      <footer>
+        Aplicatie oferita gratuit de <br/> <a href="https://digitap.eu" target="_blank"><Digitap /></a>de la Cluj + Bucuresti
+      </footer>
+    </div>
 </template>
 
-<style>
+<script>
+import Digitap from '@/assets/svg/digitap.logo.simplified.svg?inline';
+export default {
+  components: {
+    Digitap
+  }
+}
+</script>
+
+<style lang="less">
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
@@ -82,12 +96,12 @@ body:before {
     margin: 0 auto;
     width: 100%;
     max-width: 600px;
-    min-height: 100%;
+    min-height: calc(100% - 100px);
     display: flex;
     flex-flow: column;
     justify-content: flex-start;
     align-items: center;
-    background: #fff;
+    background-color: #fff;
     padding: 0;
 }
 
@@ -111,6 +125,27 @@ body:before {
 .fade-in-enter-active,
 .fade-in-leave-active {
     transition: all .5s ease;
+}
+
+footer {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px 0;
+  justify-content: center;
+  flex-flow: column;
+  align-items: center;
+  font-size: 12px;
+
+  @media screen and (min-width: 990px){
+    font-size: 16px;
+  }
+
+  svg {
+    width: 100px;
+    height: auto;
+    margin: 0 10px;
+  }
 }
 
 </style>

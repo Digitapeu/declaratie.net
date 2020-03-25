@@ -16,11 +16,11 @@ import template from "./Drawer.vue";
 
 export default class Drawer extends Vue {
 
-    @Prop({ required: true }) public fixed!: any;
-    @Prop({ required: true }) public title!: any;
-    @Prop({ required: true }) public secure!: any;
-    @Prop({ required: true }) public closeable!: any;
-    @Prop({ required: true }) public changeable!: any;
+    @Prop() public fixed!: any;
+    @Prop() public title!: any;
+    @Prop() public secure!: any;
+    @Prop() public closeable!: any;
+    @Prop() public changeable!: any;
 
     public showSecure: boolean = false;
 

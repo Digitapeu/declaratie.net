@@ -56,6 +56,8 @@ import ShareIcon from '@/assets/svg/share.svg?inline';
   },
   methods: {
       share(){
+        let navigator: any
+
         console.log('Started sharing...');
         if (navigator.share) {
             navigator.share({
@@ -66,7 +68,7 @@ import ShareIcon from '@/assets/svg/share.svg?inline';
             .then(() => {
                 console.log('Successful share');
             })
-            .catch((error) => {
+            .catch((error: any) => {
                 console.log({...error});
             });
         }

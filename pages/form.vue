@@ -113,7 +113,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 
-import Logo from '@/components/Logo.vue';
+import Logo from '@/components/Logo';
 import Declaration from '@/components/Declaration';
 
 @Component({

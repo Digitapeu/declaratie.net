@@ -50,6 +50,7 @@
                         <li>Se completează motivul/cauzele deplasării.</li>
                     </ol>
                 </div>
+            </content>
 
             <template #footer>
                 <el-row id="buttons">

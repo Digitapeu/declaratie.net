@@ -14,57 +14,6 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: 'Backdrop',
-    props: {
-        closeable: {
-            type: Boolean,
-            default: true
-        },
-        fixed: {
-            type: Boolean,
-            default: false
-        },
-        transition: {
-            default: () => ({
-                name: 'slide-up',
-                mode: 'out-in',
-                appear: true
-            }),
-            type: Object
-        },
-        context: {
-            type: Object,
-            default: () => ({})
-        }
-    },
-    data(){
-        let vm = this;
-        let store = vm.$store || vm.context.store;
-        return {
-            vm: vm,
-            visible: true,
-        }
-    },
-    created(){
-        let bus = this.$root;
-        bus.$emit('backdropVisible');
-        this.$on('closeRequest', () => {
-            this.visible = false;
-        });
-    },
-    beforeLeave(){
-        this.$emit('beforeLeave');
-    },
-    beforeDestroy(){
-        let bus = this.$root;
-        bus.$emit('backdropHidden');
-    }
-}
-
-</script>
-
 <style lang="less" scoped>
 .backdrop-wrapper {
     position: fixed;

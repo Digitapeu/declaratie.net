@@ -67,19 +67,6 @@
      </Backdrop>
 </template>
 
-<script>
-import Drawer from '@/components/Drawer.vue';
-import Backdrop from '@/components/Backdrop.vue';
-
-export default {
-    props: ['form'],
-    components: {
-        Drawer,
-        Backdrop
-    }
-}
-</script>
-
 <style lang="less" scoped>
 content {
     padding: 0 0 100px;

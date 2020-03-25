@@ -22,7 +22,7 @@
                 <p>
                     Cunoscând prevederile articolului 326, referitoare la falsul în declarații(2), precum si ale art. 352 referitoare la zădărnicirea combaterii bolilor din Noul Cod Penal, declar pe proprie răspundere faptul că mă deplasez în interes <strong>[profesional/personal]</strong>, intre orele <strong>[interval_orar]</strong>, de la <u>[adresa_de_plecare], până la [destinatie]</u>, pentru(3):
                 </p>
-                <ul>
+                <ol type="a" class="activities">
                     <li>
                         deplasarea între domiciliu și locul de muncă, atunci când activitatea profesională este esențială și nu poate fi organizată sub formă de lucru la distanță sau deplasarea în interes prefesional care nu poate fi amânată;
                     </li>
@@ -44,14 +44,14 @@
                     <li class="unchecked">
                         deplasare pentru rezolvarea următoarei situații urgente:
                     </li>
-                </ul>
+                </ol>
                 <p>
                     Atât declar, susțin și semnez. <br/>
                     <strong>Data:</strong> [data_completarii] <br/>
                     <strong>Semnătura:</strong> [nume_prenume]
                 </p>
 
-                <ol>
+                <ol class="disclaimer">
                     <li>Se declară situația în care persoana nu locuiește la domiciliul prevăzut în actul de identitate.</li>
                     <li>Declararea necorespunzătoare a adevărului, făcută unei persoane dintre cele prevăzute in art. 175 sau unei unități în care aceasta își desfășoară activitatea în vederea producerii unei consecințe juridice, pentru sine sau pentru altul, atunci când, potrivit legii ori împrejurarilor, declarația făcută servește la producerea acelei consecințe, se depedpește de la 3 luni la 2 ani sau cu amendă.</li>
                     <li>Se completează motivul/cauzele deplasării.</li>
@@ -101,9 +101,7 @@ content {
         text-align: justify;
     }
 
-    ul {
-        list-style: square;
-
+    ol.activities {
         li { margin: 0 0 10px; }
         li.unchecked {
             color: #ccc;
@@ -112,7 +110,7 @@ content {
         }
     }
 
-    ol {
+    ol.disclaimer {
         li {
             font-size: 12px;
         }

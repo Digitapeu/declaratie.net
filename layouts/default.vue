@@ -77,4 +77,40 @@ body:before {
   color: #fff;
   background-color: #35495e;
 }
+
+.container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 600px;
+    min-height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: #fff;
+    padding: 0;
+}
+
+.slide-up-enter-active,
+.slide-up-leave-active {
+    transition: all .25s ease-in-out !important;
+}
+.slide-up-enter, .slide-up-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    transform: translateY(120%) !important;
+
+    @media screen and (min-width: 990px){
+      transform: translateY(300%) !important;
+    }
+}
+
+.fade-in-enter,
+.fade-in-leave-to {
+    opacity: 0;
+}
+
+.fade-in-enter-active,
+.fade-in-leave-active {
+    transition: all .5s ease;
+}
+
 </style>

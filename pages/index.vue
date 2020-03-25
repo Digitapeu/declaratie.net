@@ -19,7 +19,7 @@
                 
                 <ul class="forms">
                     <li v-for="(entry,index) in forms" :key="`form-${index}`">
-                        <el-button type="default" @click="form = entry">{{ entry.name }}</el-button>
+                        <el-button type="default" @click="form = entry">{{ entry.name }} {{ entry.surname }}</el-button>
                     </li>
                 </ul>
 
@@ -47,15 +47,27 @@ import Declaration from '@/components/Declaration';
     Declaration
   },
 })
+
 export default class Index extends Vue {
-  public showForm: boolean = false;
+    public showForm: boolean = false;
 
-  public form: any = {};
+    public form: any = {};
 
-  public forms: any = [
-        {id: 1, name: 'Dorel Purcel'},
-        {id: 2, name: 'Mircea Cel Batran'}
-    ];
+    public forms: any = [];
+
+    public created() {
+        // When the component gets created.
+    }
+
+    public mounted() {
+        if (localStorage.getItem('forms')) {
+            try {
+                this.forms = JSON.parse(localStorage.getItem('forms') || '{}');
+            } catch(e) {
+                localStorage.removeItem('forms');
+            }
+        }
+    }
 }
 </script>
 

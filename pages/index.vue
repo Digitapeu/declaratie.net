@@ -30,30 +30,32 @@
     </div>
 </template>
 
-<script>
-import Logo from '@/components/Logo.vue';
-import Drawer from '@/components/Drawer.vue';
-import Backdrop from '@/components/Backdrop.vue';
-import Declaration from '@/components/Declaration.vue';
+<script lang="ts">
+import { Vue, Component, Prop } from 'vue-property-decorator'
 
-export default {
-    name: 'home',
-    components: {
-        Logo,
-        Drawer,
-        Backdrop,
-        Declaration
-    },
-    data(){
-        return {
-            showForm: false,
-            form: {},
-            forms: [
-                {id: 1, name: 'Dorel Purcel'},
-                {id: 2, name: 'Mircea Cel Batran'}
-            ]
-        }
-    }
+import Logo from '@/components/Logo.vue';
+import Drawer from '@/components/Drawer';
+import Backdrop from '@/components/Backdrop';
+import Declaration from '@/components/Declaration';
+
+@Component({
+  name: 'home',
+  components: {
+    Logo,
+    Drawer,
+    Backdrop,
+    Declaration
+  },
+})
+export default class Index extends Vue {
+  public showForm: boolean = false;
+
+  public form: any = {};
+
+  public forms: any = [
+        {id: 1, name: 'Dorel Purcel'},
+        {id: 2, name: 'Mircea Cel Batran'}
+    ];
 }
 </script>
 

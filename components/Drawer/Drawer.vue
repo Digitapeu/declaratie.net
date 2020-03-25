@@ -18,44 +18,6 @@
     </div>
 </template>
 
-<script>
-import CloseButton from '@/components/CloseButton.vue';
-import BackButton from '@/components/BackButton.vue';
-export default {
-    name: 'Drawer',
-    props: ['fixed', 'title', 'secure', 'closeable', 'changeable'],
-    components: {
-        CloseButton,
-        BackButton
-    },
-    data(){
-        return {
-            showSecure: false
-        }
-    },
-    methods: {
-        swiped(direction){
-            let vm = this;
-
-            if(!vm.closeable || typeof vm.closeable === 'object' && vm.closeable.preventDown) {
-                return;
-            }
-
-            switch(direction){
-                case 'bottom': return vm.$emit('close');
-            }
-        },        
-    },
-    mounted(){
-        let vm = this;
-        vm.secure && setTimeout(() => {
-            vm.showSecure = true;
-        }, 250);
-    },
-}
-
-</script>
-
 <style lang="less" scoped>
 .drawer {
     position: absolute;

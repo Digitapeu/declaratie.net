@@ -5,9 +5,9 @@
 </header>
 <main>
     <el-steps :active="step" align-center simple finish-status="success">
-        <el-step title="Pas 1"></el-step>
-        <el-step title="Pas 2"></el-step>
-        <el-step title="Pas 3"></el-step>
+        <el-step title="Pas 1" @click.native="step = 1"></el-step>
+        <el-step title="Pas 2" @click.native="step = 2"></el-step>
+        <el-step title="Pas 3" @click.native="step = 3"></el-step>
     </el-steps>
 
     <el-form ref="form" :model="form">
@@ -256,7 +256,7 @@ export default class Form extends Vue {
         width: 100%;
         height: auto;
         box-sizing: border-box;
-        padding: 0 0 100px;
+        padding: 0;
         position: relative;
         z-index: 2;
 
@@ -271,6 +271,18 @@ export default class Form extends Vue {
 
         .el-steps {
             border-radius: 0;
+
+            /deep/ .el-step {
+              cursor: pointer;
+
+              .el-step__main{
+                .el-step__title {
+                  @media screen and (max-width: 350px){
+                    font-size: 12px!important;
+                  }
+                }
+              }
+            }
         }
 
         .el-form {
@@ -287,6 +299,14 @@ export default class Form extends Vue {
 
                 input {
                     padding: 25px;
+                }
+
+                @media screen and (max-width: 350px){
+                  font-size: 12px;
+
+                  input {
+                    padding: 10px;
+                  }
                 }
             }
 
@@ -348,6 +368,14 @@ export default class Form extends Vue {
                 }
                 }
             }
+
+            .el-divider {
+              .el-divider__text {
+                @media screen and (max-width: 350px){
+                  font-size: 10px;
+                }
+              }
+            }
         }
 
         .text {
@@ -387,6 +415,10 @@ export default class Form extends Vue {
 
             @media screen and (min-width: 900px) {
                 padding: 20px 30px;
+            }
+
+            @media screen and (max-width: 350px){
+              font-size: 16px;
             }
         }
     }

@@ -32,11 +32,11 @@
                         declar pe proprie răspundere faptul că mă deplasez în interes <strong>{{ form.interest == '1' ? 'personal' : 'profesional' }}</strong>, intre orele <strong>{{ form.startTime }} - {{ form.endTime }}</strong>, 
                         de la <u>{{ form.from }}, până la {{ form.to }}</u>, pentru(3):
                     </p>
-                    <ul>
+                    <ol type="a" class="activities">
                         <li v-for="reason in form.reasons" v-bind:key="reason">
                             {{ reason }}
                         </li>
-                    </ul>
+                    </ol>
                     <p></p>
                     <p>
                         Atât declar, susțin și semnez. <br/>
@@ -44,18 +44,20 @@
                         <strong>Semnătura:</strong> {{ form.name }} {{ form.surname }}
                     </p>
                     <p></p>
-                    <ol>
+                    <ol class="disclaimer">
                         <li>Se declară situația în care persoana nu locuiește la domiciliul prevăzut în actul de identitate.</li>
                         <li>Declararea necorespunzătoare a adevărului, făcută unei persoane dintre cele prevăzute in art. 175 sau unei unități în care aceasta își desfășoară activitatea în vederea producerii unei consecințe juridice, pentru sine sau pentru altul, atunci când, potrivit legii ori împrejurarilor, declarația făcută servește la producerea acelei consecințe, se depedpește de la 3 luni la 2 ani sau cu amendă.</li>
                         <li>Se completează motivul/cauzele deplasării.</li>
                     </ol>
                 </div>
 
+            <template #footer>
                 <el-row id="buttons">
                     <el-button type="primary" @click="onDocumentPrint()">Print</el-button>
                     <el-button type="warning" @click="onDocumentSave()">Salveaza .pdf</el-button>
+                    <el-button type="success" plain @click>Duplica</el-button>
                 </el-row>
-            </content>
+            </template>
 
             </Drawer>
      </Backdrop>
@@ -82,8 +84,9 @@ content {
         text-align: justify;
     }
 
-    ul {
-        list-style: square;
+    ol.activities {
+        border: 1px solid #000;
+        padding: 20px 40px;
 
         li { margin: 0 0 10px; }
         li.unchecked {
@@ -93,13 +96,14 @@ content {
         }
     }
 
-    ol {
+    ol.disclaimer {
         li {
             font-size: 12px;
         }
     }
+}
 
-    #buttons {
+#buttons {
         position: fixed;
         bottom: 0;
         left: 0;
@@ -119,5 +123,4 @@ content {
             font-size: 20px;
         }
     }
-}
 </style>

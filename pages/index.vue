@@ -1,11 +1,17 @@
 <template>
     <div class="container">
+        <div id="hashtag">#stamacasa</div>
         <Logo />
         <p>Completeaza usor si rapid <br/>declaratia pe proprie raspundere ( <strong>obligatorie</strong> ) <br/>conform ordonantei militare nr. 3</p>
         
         <el-row>
             <nuxt-link class="el-button el-button--primary" :to="{path: '/form'}">Completeaza formularul</nuxt-link>
             <el-button type="default" @click="showForm = true">Formulare salvate</el-button>
+        </el-row>
+
+        <el-row id="sharer" @click.native="share" style="cursor: pointer">
+            <ShareIcon/>
+            Trimite la familie si prieteni
         </el-row>
 
         
@@ -33,10 +39,11 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 
-import Logo from '@/components/Logo.vue';
+import Logo from '@/components/Logo';
 import Drawer from '@/components/Drawer';
 import Backdrop from '@/components/Backdrop';
 import Declaration from '@/components/Declaration';
+import ShareIcon from '@/assets/svg/share.svg?inline';
 
 @Component({
   name: 'home',
@@ -44,8 +51,27 @@ import Declaration from '@/components/Declaration';
     Logo,
     Drawer,
     Backdrop,
-    Declaration
+    Declaration,
+    ShareIcon
   },
+  methods: {
+      share(){
+        console.log('Started sharing...');
+        if (navigator.share) {
+            navigator.share({
+                title: `Declaratia pe raspundere proprie pentru deplasari - declaratie.net`,
+                text: `Completeaza-ti online declaratia. Merge foarte bine pe mobil`,
+                url: `${window.location.origin}${this.$route.path}?utm_source=share`,
+            })
+            .then(() => {
+                console.log('Successful share');
+            })
+            .catch((error) => {
+                console.log({...error});
+            });
+        }
+    }
+  }
 })
 
 export default class Index extends Vue {
@@ -78,7 +104,26 @@ export default class Index extends Vue {
     position: relative;
     z-index: 10;
 
-    p { text-align: center; width: 100%; padding: 10px; box-sizing: border-box;}
+    #hashtag {
+        position: absolute;
+        top: 20px;
+        font-size: 30px;
+        font-weight: bold;
+        color: red;
+        transform: translate3D(0, 45deg, 0);
+    }
+
+    @media screen and (min-width: 990px){
+        background-color: unset;
+    }
+
+    p { 
+        text-align: center; width: 100%; padding: 10px; box-sizing: border-box;
+
+        @media screen and (max-width: 350px){
+            font-size: 12px;
+        }
+    }
 
     .el-row {
         width: 100%;
@@ -86,6 +131,10 @@ export default class Index extends Vue {
         flex-flow: column;
         margin: 30px auto;
         align-items: center;
+
+        @media screen and (max-width: 350px){
+            margin: 0 auto;
+        }
     }
 
     .el-button {
@@ -93,6 +142,11 @@ export default class Index extends Vue {
         font-size: 24px;
         text-decoration: none;
         margin: 15px auto;
+
+        @media screen and (max-width: 350px){
+            font-size: 18px;
+            width: 90%;
+        }
     }
 
     .forms {
@@ -107,6 +161,26 @@ export default class Index extends Vue {
             .el-button {
                 width: 100%;
                 margin: 0 0 20px;
+            }
+        }
+    }
+
+    #sharer {
+        display: none;
+
+        @media screen and (max-width: 600px){
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            width: 80%;
+            height: auto;
+            margin: 0 auto;
+
+            svg {
+                width: 45px;
+                height: 45px;
+                margin: 20px auto;
+                cursor: pointer;
             }
         }
     }

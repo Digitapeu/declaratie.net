@@ -4,7 +4,6 @@
 <style>
 .logo {
   animation: 1s appear;
-  margin: auto;
   font-size: 40px;
   color: #000;
   text-decoration: none;

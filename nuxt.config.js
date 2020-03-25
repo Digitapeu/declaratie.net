@@ -4,25 +4,21 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Declaratia pe raspundere proprie pentru deplasari - declaratie.net',
     meta: [{
         charset: 'utf-8'
       },
-      {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1'
-      },
-      {
-        hid: 'description',
-        name: 'description',
-        content: process.env.npm_package_description || ''
-      }
+      { hid: 'digitap-viewport', name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'},
+      { hid: 'digitap-description', name: 'description', content: 'Completeaza gratuit declaratia obligatorie pe proprie raspundere, venita in urma ordonantei militare nr. 3'},
+      { hid: 'digitap-ogTitle', name: 'og:title', content: 'Declaratia pe raspundere proprie pentru deplasari - declaratie.net'},
+      { hid: 'digitap-ogDescription', name: 'og:description', content: 'Completeaza gratuit declaratia obligatorie pe proprie raspundere, venita in urma ordonantei militare nr. 3'},
+      { hid: 'digitap-ogImage', name: 'og:image', content: 'https://declaratie.net/share.jpg'},
+      { hid: 'digitap-ogHost', name: 'og:host', content: 'https://declaratie.net'},
+      { hid: 'digitap-ogUrl', name: 'og:url', content: 'https://declaratie.net'},
+      { hid: 'digitap-ogType', name: 'og:type', content: 'website'},
+      { hid: 'digitap-author', name: 'author', content: 'Digitap'},
     ],
-    link: [{
-      rel: 'icon',
-      type: 'image/x-icon',
-      href: '/favicon.ico'
-    }]
+    link: []
   },
   /*
    ** Customize the progress-bar color

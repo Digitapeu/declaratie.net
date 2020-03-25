@@ -60,8 +60,9 @@
 
             <template #footer>
                 <el-row id="buttons">
-                    <el-button type="primary" @click>Print</el-button>
-                    <el-button type="warning" @click>Salveaza .pdf</el-button>
+                    <el-button type="primary" plain @click>Print</el-button>
+                    <el-button type="warning" plain @click>Pdf</el-button>
+                    <el-button type="success" plain @click>Duplica</el-button>
                 </el-row>
             </template>
 

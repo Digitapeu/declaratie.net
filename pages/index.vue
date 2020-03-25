@@ -9,6 +9,11 @@
             <el-button type="default" @click="showForm = true">Formulare salvate</el-button>
         </el-row>
 
+        <el-row id="sharer" @click.native="share" style="cursor: pointer">
+            <ShareIcon/>
+            Trimite la familie si prieteni
+        </el-row>
+
         
         <Backdrop v-if="showForm" ref="drawer" @close="showForm = false" :closeable="true" :fixed="false" :transition="{name: 'slide-up', mode: 'out-in', appear: true}">
             <Drawer 
@@ -38,6 +43,7 @@ import Logo from '@/components/Logo';
 import Drawer from '@/components/Drawer';
 import Backdrop from '@/components/Backdrop';
 import Declaration from '@/components/Declaration';
+import ShareIcon from '@/assets/svg/share.svg?inline';
 
 @Component({
   name: 'home',
@@ -45,8 +51,27 @@ import Declaration from '@/components/Declaration';
     Logo,
     Drawer,
     Backdrop,
-    Declaration
+    Declaration,
+    ShareIcon
   },
+  methods: {
+      share(){
+        console.log('Started sharing...');
+        if (navigator.share) {
+            navigator.share({
+                title: `Declaratia pe raspundere proprie pentru deplasari - declaratie.net`,
+                text: `Completeaza-ti online declaratia. Merge foarte bine pe mobil`,
+                url: `${window.location.origin}${this.$route.path}?utm_source=share`,
+            })
+            .then(() => {
+                console.log('Successful share');
+            })
+            .catch((error) => {
+                console.log({...error});
+            });
+        }
+    }
+  }
 })
 export default class Index extends Vue {
   public showForm: boolean = false;
@@ -94,6 +119,10 @@ export default class Index extends Vue {
         flex-flow: column;
         margin: 30px auto;
         align-items: center;
+
+        @media screen and (max-width: 350px){
+            margin: 0 auto;
+        }
     }
 
     .el-button {
@@ -120,6 +149,26 @@ export default class Index extends Vue {
             .el-button {
                 width: 100%;
                 margin: 0 0 20px;
+            }
+        }
+    }
+
+    #sharer {
+        display: none;
+
+        @media screen and (max-width: 600px){
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            width: 80%;
+            height: auto;
+            margin: 0 auto;
+
+            svg {
+                width: 45px;
+                height: 45px;
+                margin: 20px auto;
+                cursor: pointer;
             }
         }
     }

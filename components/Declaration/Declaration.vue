@@ -1,5 +1,6 @@
 <template>
-     <Backdrop ref="drawer" @close="$emit('close')" :closeable="true" :fixed="false" :transition="{name: 'slide-up', mode: 'out-in', appear: true}">
+     <Backdrop ref="drawer" @close="$emit('close')" :style="{'zIndex': '200'}" 
+     :closeable="true" :fixed="false" :transition="{name: 'slide-up', mode: 'out-in', appear: true}">
             <Drawer 
                 :closeable="true"
                 secure="Formulare salvate" 
@@ -122,6 +123,14 @@ content {
         
         .el-button {
             font-size: 20px;
+
+            @media screen and (max-width: 375px){
+                font-size: 16px;
+            }
+
+            @media screen and (max-width: 320px){
+                font-size: 12px;
+            }
         }
     }
 </style>

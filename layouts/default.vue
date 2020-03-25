@@ -4,6 +4,7 @@
       <footer>
         Aplicatie oferita gratuit de <br/> <a href="https://digitap.eu" target="_blank"><Digitap /></a>de la Cluj + Bucuresti
       </footer>
+      <portal-target name="drawer"></portal-target>
     </div>
 </template>
 

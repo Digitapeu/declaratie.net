@@ -25,7 +25,7 @@
                 
                 <ul class="forms">
                     <li v-for="(entry,index) in forms" :key="`form-${index}`">
-                        <el-button type="default" @click="form = entry">{{ entry.name }} {{ entry.surname }}</el-button>
+                        <el-button v-if="entry.name && entry.surname" type="default" @click="form = entry">{{ entry.name }} {{ entry.surname }}</el-button>
                     </li>
                 </ul>
 

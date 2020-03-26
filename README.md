@@ -1,6 +1,6 @@
 # declaratie.net
 
-> My first-class Nuxt.js project
+Mobile-friendly web app that helps you generate the PDF statement required for leaving the house during the state of emergency triggered by COVID-19 here in Romania. 
 
 ## Build Setup
 

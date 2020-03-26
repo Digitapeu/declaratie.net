@@ -38,41 +38,53 @@ export default class Declaration extends Vue {
         let dd = {
             content: [
                 {
-                    text: '\n\nDeclarație pe proprie răspundere,\n\n\n',
+                    text: '\n\nDECLARAȚIE PE PROPRIE RĂSPUNDERE\n\n\n',
                     style: 'header',
                     alignment: 'center'
                 },
                 {
-                    text: [
-                        'Subsemnatul(a) ', {text: this.form.name, fontSize: 14, bold: true}, ' ', {text: this.form.surname, fontSize: 14, bold: true}, ', ',
-                        this.form.descendant == '1' ? 'fiica' : 'fiul', ' lui ', {text: this.form.father, fontSize: 14, bold: true}, ' și al lui ', {text: this.form.mother, fontSize: 14, bold: true}, ', ',
-                        'domiciliat(ă) în ', {text: this.form.address.city, fontSize: 14, bold: true}, ', județul/sectorul ', {text: this.form.address.county, fontSize: 14, bold: true}, ', ',
-                        'strada ', {text: this.form.address.street, fontSize: 14, bold: true}, ', ', 
-                        {text: this.form.address.flat ? 'bloc ' + this.form.address.flat + ', ' : '', fontSize: 14, bold: true},
-                        {text: this.form.address.floor ? 'etaj ' + this.form.address.floor + ', ' : '', fontSize: 14, bold: true},
-                        {text: this.form.address.appartment ? 'apartament ' + this.form.address.appartment + ', ' : '', fontSize: 14, bold: true},
-                        'având CNP ', {text: this.form.cnp, fontSize: 14, bold: true}, ', BI/CI seria ', {text: this.form.id.series, fontSize: 14, bold: true}, 
-                        ', număr ', {text: this.form.id.number, fontSize: 14, bold: true}, ',\n\n'
+                    columns: [
+                        {
+                            width: 150,
+                            text: [
+                                {text: 'Nume, prenume: ', bold: true}, '\n',
+                                {text: 'Data nașterii: ', bold: true}, '\n',
+                                {text: 'Adresa locuinței: ', bold: true}, '\n',
+                            ]
+                        },
+                        {
+                            text: [
+                                this.form.name, ' ', this.form.surname, '\n',
+                                this.form.birthday.day, '/', this.form.birthday.month, '/', this.form.birthday.year, '\n',
+                                this.form.address.city, ', județul/sectorul ', this.form.address.county, ', strada ', this.form.address.street,  '\n',
+                                this.form.address.flat ? 'bloc ' + this.form.address.flat + ', ' : '', 
+                                this.form.address.floor ? 'etaj ' + this.form.address.floor + ', ' : '',
+                                this.form.address.appartment ? 'apartament ' + this.form.address.appartment + ', \n' : '\n',
+                                {
+                                    text: 'Se va completa adresa locuinței în care persoana locuiește în fapt, indiferent dacă este identică sau nu cu cea menționată în actul de identitate.\n\n\n',
+                                    fontSize: 9
+                                }
+                            ]
+                        }
                     ]
                 },
                 {
                     text: [
-                        'Locuind în fapt(1) în localitatea ', {text: this.form.residence.city, fontSize: 14, bold: true}, 
-                        ', județul/sectorul ', {text: this.form.residence.county, fontSize: 14, bold: true}, ', ',
-                        'strada ', {text: this.form.residence.street, fontSize: 14, bold: true}, ', ', 
-                        {text: this.form.residence.flat ? 'bloc ' + this.form.residence.flat + ', ' : '', fontSize: 14, bold: true},
-                        {text: this.form.residence.floor ? 'etaj ' + this.form.residence.floor + ', ' : '', fontSize: 14, bold: true},
-                        {text: this.form.residence.appartment ? 'apartament ' + this.form.residence.appartment + ', ' : '', fontSize: 14, bold: true},
-                        '\n\n'
+                        {text: 'Locul/locurile deplasării: ', bold: true}, '\n\n',
+                        'Mă deplasez în interes ', this.form.interest == '1' ? 'personal' : 'profesional', 
+                        ' intre orele ', this.form.startTime, ' - ', this.form.endTime, 
+                        ', de la ', this.form.from, ', până la ', this.form.to, '.\n\n',
+                        {
+                            text: 'Se vor menționa locurile în care persoana se deplasează, în ordinea în care aceasta intenționează să-și desfășoare traseul.\n\n\n\n',
+                            fontSize: 9
+                        }
                     ]
                 },
                 {
                     text: [
-                        'Cunoscând prevederile articolului 326, referitoare la falsul în declarații(2), precum si ale art. 352 referitoare la zădărnicirea combaterii bolilor din Noul Cod Penal,',
-                        'declar pe proprie răspundere faptul că mă deplasez în interes ', {text: this.form.interest == '1' ? 'personal' : 'profesional', fontSize: 14, bold: true}, 
-                        ' intre orele ', {text: this.form.startTime, fontSize: 14, bold: true}, ' - ', {text: this.form.endTime, fontSize: 14, bold: true},
-                        ' de la ', {text: this.form.from, fontSize: 14, bold: true},', până la ', {text: this.form.to, fontSize: 14, bold: true}, ', pentru(3): \n\n'
-                    ]
+                        {text: 'Motivul deplasării: ', bold: true}, '\n\n',
+                    ],
+                    style: 'marginBottom'
                 },
                 {
                     type: 'square',
@@ -80,18 +92,30 @@ export default class Declaration extends Vue {
                 },
                 {
                     text: [
-                        '\n\n\n', 'Atât declar, susțin și semnez.\n',
-                        {text: 'Data: ', bold: true}, this.form.signingDate, '\n', 
-                        {text: 'Semnătura: ', bold: true}, this.form.name + ' ' + this.form.surname, '\n\n\n\n\n\n\n\n\n\n', 
+                        {
+                            text: '\nSe va bifa doar motivul/motivele deplasării dintre cele prevăzute în listă, nefiind permise deplasări realizate invocând alte motive decât cele prevăzute în Ordonanța Militară nr. 3/2020.\n\n\n\n\n\n\n\n',
+                            fontSize: 9
+                        }
                     ]
                 },
                 {
-                    ol: [
-                        'Se declară situația în care persoana nu locuiește la domiciliul prevăzut în actul de identitate.',
-                        'Declararea necorespunzătoare a adevărului, făcută unei persoane dintre cele prevăzute in art. 175 sau unei unități în care aceasta își desfășoară activitatea în vederea producerii unei consecințe juridice, pentru sine sau pentru altul, atunci când, potrivit legii ori împrejurarilor, declarația făcută servește la producerea acelei consecințe, se depedpește de la 3 luni la 2 ani sau cu amendă.',
-                        'Se completează motivul/cauzele deplasării.'
-                    ],
-                    style: 'smaller'
+                    columns: [
+                        {
+                            text: [
+                                {text: 'Data declarației: ', bold: true}, this.form.signingDate, '\n',  
+                            ]
+                        },
+                        {
+                            text: [
+                                {text: 'Semnătura: ', bold: true}, '............................', '\n\n\n\n\n\n',
+                            ]
+                        }
+                    ]
+                },
+                {
+                    text: "Persoanele care au împlinit vârsta de 65 de ani completează doar pentru motivele prevăzute în câmpurile 1-6, deplasarea fiind permisă zilnic doar în intervalul orar 11.00 – 13.00. ",
+                    style: 'smaller',
+                    bold: true
                 }
             ],
             styles: {
@@ -106,6 +130,9 @@ export default class Declaration extends Vue {
                 bigger: {
                     fontSize: 15,
                     italics: true
+                },
+                marginBottom: {
+                    margin: [0, 0, 50, 0]
                 }
             }
             

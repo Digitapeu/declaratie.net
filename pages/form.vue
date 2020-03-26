@@ -21,44 +21,14 @@
                     <el-input v-model="form.surname" placeholder="Prenume"></el-input>
                 </el-form-item>
 
-                <el-row class="descendants">
-                    <el-form-item prop="descendant">
-                        <el-radio v-model="form.descendant" label="1" border>Fiica</el-radio>
-                        <el-radio v-model="form.descendant" label="2" border>Fiul</el-radio>
-                    </el-form-item>
-                </el-row>
-                <el-divider>lui</el-divider>
-                <el-row class="split">
-                    <el-form-item prop="mother">
-                        <el-input v-model="form.mother" placeholder="Mama"></el-input>
-                    </el-form-item>
+                <el-divider>data nasterii</el-divider>
 
-                    <el-form-item prop="father">
-                        <el-input v-model="form.father" placeholder="Tata"></el-input>
-                    </el-form-item>
+                <el-row class="address-details">
+                    <el-input v-model="form.birthday.day" placeholder="Zi"></el-input>
+                    <el-input v-model="form.birthday.month" placeholder="Luna"></el-input>
+                    <el-input v-model="form.birthday.year" placeholder="An"></el-input>
                 </el-row>
 
-                <!-- <el-divider>Carte de identitate</el-divider>
-                <el-row class="split">
-
-                    <el-form-item prop="id.series">
-                        <el-input v-model="form.id.series" maxlength="2">
-                            <template slot="prepend">Serie</template>
-                        </el-input>
-                    </el-form-item>
-
-                    <el-form-item prop="id.number">
-                        <el-input v-model="form.id.number" maxlength="6">
-                            <template slot="prepend">No.</template>
-                        </el-input>
-                    </el-form-item>
-                </el-row>
-
-                <el-form-item prop="cnp">
-                    <el-input v-model="form.cnp" placeholder="CNP" maxlength="13">
-                        <template slot="append">{{ 13 - form.cnp.length }}</template>
-                    </el-input>
-                </el-form-item> -->
             </el-row>
         </el-form>
 
@@ -71,38 +41,19 @@
                 </el-form-item>
 
                 <el-form-item prop="address.county">
-                    <el-input v-model="form.address.county" placeholder="Judet"></el-input>
+                    <el-input v-model="form.address.county" placeholder="Judet/Sector"></el-input>
                 </el-form-item>
 
                 <el-form-item prop="address.street">
-                    <el-input v-model="form.address.street" placeholder="Strada"></el-input>
+                    <el-input v-model="form.address.street" placeholder="Strada, Numar"></el-input>
                 </el-form-item>
 
                 <el-row class="address-details">
                     <el-input v-model="form.address.flat" placeholder="Bloc"></el-input>
                     <el-input v-model="form.address.floor" placeholder="Etaj"></el-input>
-                    <el-input v-model="form.address.appartament" placeholder="Apt."></el-input>
+                    <el-input v-model="form.address.appartment" placeholder="Apt."></el-input>
                 </el-row>
 
-                <!-- <el-divider content-position="center">Domiciliul curent</el-divider>
-
-                <el-form-item prop="residence.city">
-                    <el-input v-model="form.residence.city" placeholder="Oras"></el-input>
-                </el-form-item>
-
-                <el-form-item prop="residence.county">
-                    <el-input v-model="form.residence.county" placeholder="Judet"></el-input>
-                </el-form-item>
-
-                <el-form-item prop="residence.street">
-                    <el-input v-model="form.residence.street" placeholder="Strada"></el-input>
-                </el-form-item>
-
-                <el-row class="address-details">
-                    <el-input v-model="form.residence.flat" placeholder="Bloc"></el-input>
-                    <el-input v-model="form.residence.floor" placeholder="Etaj"></el-input>
-                    <el-input v-model="form.residence.appartament" placeholder="Apt."></el-input>
-                </el-row> -->
             </el-row>
         </el-form>
 
@@ -200,17 +151,16 @@ export default class Form extends Vue {
     ];
 
     public reasons: any = {
-        work: 'Deplasarea între domiciliu și locul de muncă, atunci când activitatea profesională este esențială și nu poate fi organizată sub formă de lucru la distanță sau deplasarea în interes profesional care nu poate fi amânată.',
-        consult: 'Consult medical de specialitate care nu poate fi amânat.',
-        shopping: 'Deplasare pentru cumpărături de primă necesitate la unități comerciale din zona de domiciliu.',
-        medicalCare: 'Deplasare pentru asigurarea asistenței pentru persoane în vârstă, vulnerabile sau pentru însoțirea copiilor.',
-        shortBreak: 'Deplasare scurtă, lângă domiciliu, pentru desfășurarea de activități fizice individuale, în aer liber, cu excluderea oricărei forme de activitate sportivă colectivă.',
-        petWalk: 'Deplasare scurtă, lângă domiciliu, legată de nevoile animalelor de companie.',
-        agriculture: 'Realizarea de activitati agricole.',
-        blood: 'Donarea de sange, la centrele de transfuzie sanguina.',
-        volunteer: 'Scopuri umanitare sau de voluntariat',
-        commerce: 'Comercializarea de produse agroalimentare (în cazul producătorilor agricoli)',
-        goods: 'Asigurarea de bunuri necesare desfășurării activității profesionale.'
+        work: 'interes profesional, inclusiv între locuință/gospodărie și locul/locurile de desfășurare a activității profesionale și înapoiDeplasarea între domiciliu și locul de muncă, atunci când activitatea profesională este esențială și nu poate fi organizată sub formă de lucru la distanță sau deplasarea în interes profesional care nu poate fi amânată.',
+        consult: 'asistență medicală care nu poate fi amânată și nici realizată de la distanță',
+        shopping: 'asigurarea de bunuri care acoperă necesitățile de bază ale persoanelor și animalelor de companie/domestice',
+        medicalCare: 'motive justificate, precum îngrijirea/ însoțirea unui minor/copilului, asistența persoanelor vârstnice, bolnave sau cu dizabilități ori deces al unui membru de familie',
+        shortBreak: 'activitate fizică individuală (cu excluderea oricăror activități sportive de echipă/ colective) sau pentru nevoile animalelor de companie/domestice, în apropierea locuinței',
+        agriculture: 'realizarea de activități agricole',
+        blood: 'donarea de sânge, la centrele de transfuzie sanguină',
+        volunteer: 'scopuri umanitare sau de voluntariat',
+        commerce: 'comercializarea de produse agroalimentare (în cazul producătorilor agricoli)',
+        goods: 'asigurarea de bunuri necesare desfășurării activității profesionale.'
     };
 
     public rules: any = [{
@@ -224,37 +174,6 @@ export default class Form extends Vue {
                 message: 'Te rugam sa-ti introduci prenumele',
                 trigger: 'blur'
             }, ],
-            // cnp: [{
-            //         required: true,
-            //         message: 'Te rugam sa introduci CNP-ul tau',
-            //         trigger: 'blur'
-            //     },
-            //     {
-            //         min: 13,
-            //         max: 13,
-            //         message: 'Maxim 13 cifre',
-            //         trigger: 'blur'
-            //     }
-            // ],
-            // id: {
-            //     series: [{
-            //             required: true,
-            //             message: 'Camp obligatoriu',
-            //             trigger: 'blur'
-            //         },
-            //         {
-            //             min: 2,
-            //             max: 2,
-            //             message: 'Maxim 2',
-            //             trigger: 'blur'
-            //         }
-            //     ],
-            //     number: [{
-            //         required: true,
-            //         message: 'Camp obligatoriu',
-            //         trigger: 'blur'
-            //     }, ],
-            // },
             descendant: [{
                 required: true,
                 message: 'Te rugam sa selectezi o optiune',
@@ -270,6 +189,23 @@ export default class Form extends Vue {
                 message: 'Numele tatalui',
                 trigger: 'blur'
             }, ],
+            birthday: {
+                day: [{
+                    required: true,
+                    message: 'Ziua nasterii',
+                    trigger: 'blur'
+                }, ],
+                month: [{
+                    required: true,
+                    message: 'Luna nasterii',
+                    trigger: 'blur'
+                }, ],
+                year: [{
+                    required: true,
+                    message: 'Anul nasterii',
+                    trigger: 'blur'
+                }, ],
+            }
         },
         {
             address: {
@@ -280,7 +216,7 @@ export default class Form extends Vue {
                 }, ],
                 county: [{
                     required: true,
-                    message: 'Te rugam sa completezi judetul',
+                    message: 'Te rugam sa completezi judetul/sectorul',
                     trigger: 'blur'
                 }, ],
                 street: [{
@@ -332,14 +268,6 @@ export default class Form extends Vue {
     public form: any = {
         name: '',
         surname: '',
-        cnp: '',
-        id: {
-            series: '',
-            number: ''
-        },
-        descendant: '',
-        mother: '',
-        father: '',
         address: {
             city: '',
             county: '',
@@ -349,14 +277,10 @@ export default class Form extends Vue {
             floor: '',
             appartment: ''
         },
-        residence: {
-            city: '',
-            county: '',
-            street: '',
-            number: '',
-            flat: '',
-            floor: '',
-            appartment: ''
+        birthday: {
+            day: '',
+            month: '',
+            year: ''
         },
         interest: '',
         startTime: '',
@@ -422,15 +346,25 @@ export default class Form extends Vue {
         return i;
     }
 
+    private uid(form: any) {
+        let id: string
+
+        id = form.name.toLowerCase() + form.surname.toLowerCase() 
+                + form.mother.toLowerCase() + form.father.toLowerCase();
+
+        id = id.replace(/\s/g,'');
+
+        return id;
+    }
+
     public onFormSave() {
         // Save the signing date (now)
-
         let dateTime = new Date();
         this.form.signingDate = dateTime.getUTCDate() + "/" + (dateTime.getMonth() + 1) + "/" +
             dateTime.getFullYear() + " " + this.addZero(dateTime.getHours()) + ":" + this.addZero(dateTime.getMinutes())
 
         // Check if we've got a record for this person already
-        let foundIndex = this.forms.findIndex((x: any) => x.cnp === this.form.cnp)
+        let foundIndex = this.forms.findIndex((x: any) => this.uid(x) === this.uid(this.form))
 
         if (foundIndex !== -1) {
             this.forms[foundIndex] = this.form;

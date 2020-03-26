@@ -32,7 +32,7 @@
         </Drawer>
     </Backdrop>
 
-    <Declaration v-if="form.id" @close="form = {}" v-bind="{ form }" />
+    <Declaration v-if="form.name" @close="form = {}" v-bind="{ form }" />
 </div>
 </template>
 

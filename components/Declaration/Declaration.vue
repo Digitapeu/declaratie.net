@@ -58,6 +58,7 @@
                     <el-button type="primary" @click="onDocumentPrint()">Print</el-button>
                     <el-button type="warning" @click="onDocumentSave()">Salveaza .pdf</el-button>
                     <nuxt-link v-if="$route.name != 'form'" class="el-button el-button--success is-plain" :to="{name: 'form', params: { form: form }}" tag="button">Duplica</nuxt-link>
+                    <span v-else @click="$refs.drawer.$emit('closeRequest')"><nuxt-link class="el-button el-button--success is-plain" :to="{path: '/'}" tag="button">Restart</nuxt-link></span>
                 </el-row>
             </template>
 
@@ -131,6 +132,10 @@ content {
             @media screen and (max-width: 320px){
                 font-size: 12px;
             }
+        }
+
+        span {
+            margin-left: 10px;
         }
     }
 </style>

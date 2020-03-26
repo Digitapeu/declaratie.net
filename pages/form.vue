@@ -317,7 +317,7 @@ export default class Form extends Vue {
     private uid(form: any) {
         let id: string
 
-        if (!form.type || form.tyle === 'employer') {
+        if (!form.type || form.type === 'employer') {
             return false
         }
 

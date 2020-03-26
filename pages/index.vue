@@ -59,7 +59,7 @@ import ShareIcon from '@/assets/svg/share.svg?inline';
         let navigator: any
 
         console.log('Started sharing...');
-        if (navigator.share) {
+        if (window.navigator && window.navigator.share !== undefined) {
             navigator.share({
                 title: `Declaratia pe raspundere proprie pentru deplasari - declaratie.net`,
                 text: `Completeaza-ti online declaratia. Merge foarte bine pe mobil`,

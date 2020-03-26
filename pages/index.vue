@@ -23,11 +23,14 @@
                 @close="$refs.drawer.$emit('closeRequest')" 
             >
                 
-                <ul class="forms">
+                <ul v-if="forms.length" class="forms">
                     <li v-for="(entry,index) in forms" :key="`form-${index}`">
                         <el-button v-if="entry.name && entry.surname" type="default" @click="form = entry">{{ entry.name }} {{ entry.surname }}</el-button>
                     </li>
                 </ul>
+                <p v-else>
+                    Inca nu ai nicio declaratie completata
+                </p>
 
             </Drawer>
         </Backdrop>
@@ -56,10 +59,11 @@ import ShareIcon from '@/assets/svg/share.svg?inline';
   },
   methods: {
       share(){
-        let navigator: any
+        let navigator: any;
 
         console.log('Started sharing...');
-        if (window.navigator && window.navigator.share !== undefined) {
+
+        if (navigator.share) {
             navigator.share({
                 title: `Declaratia pe raspundere proprie pentru deplasari - declaratie.net`,
                 text: `Completeaza-ti online declaratia. Merge foarte bine pe mobil`,
@@ -120,7 +124,7 @@ export default class Index extends Vue {
     }
 
     p { 
-        text-align: center; width: 100%; padding: 10px; box-sizing: border-box;
+        text-align: center; width: 100%; padding: 5px; box-sizing: border-box;
 
         @media screen and (max-width: 350px){
             font-size: 12px;
@@ -143,7 +147,7 @@ export default class Index extends Vue {
         width: 90%;
         font-size: 22px;
         text-decoration: none;
-        margin: 10px auto;
+        margin: 5px auto;
         padding: 20px 0;
 
         @media screen and (max-width: 350px){

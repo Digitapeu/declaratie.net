@@ -120,6 +120,7 @@ export default class Declaration extends Vue {
     }
 
     public onDocumentSave() {
-        this.doc.download('document.pdf');
+        let date = new Date().getTime();
+        this.doc.download(`declaratie_raspundere_personala_${date}.pdf`);
     }
 }

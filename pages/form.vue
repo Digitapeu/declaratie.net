@@ -220,8 +220,8 @@ export default class Form extends Vue {
 
     public onFormSave() {
         // Save the signing date (now)
-        let dateTime = new Date()
-        this.form.signingDate = dateTime.getDay() + "/" + dateTime.getMonth() + "/" 
+        let dateTime = new Date();
+        this.form.signingDate = dateTime.getUTCDate() + "/" + ( dateTime.getMonth() + 1 ) + "/" 
                     + dateTime.getFullYear() + " " + this.addZero(dateTime.getHours()) + ":" + this.addZero(dateTime.getMinutes())
 
         // Check if we've got a record for this person already
@@ -336,27 +336,6 @@ export default class Form extends Vue {
                 }
             }
 
-            .split {
-                display: flex;
-                flex-flow: row wrap;
-                justify-content: space-between;
-                margin: 0 0 20px;
-
-                .el-input {
-                    flex-grow: 1;
-                    flex-basis: 45%;
-                    margin: 0;
-
-                    &:nth-of-type(1) {
-                        margin-right: 10px
-                    }
-
-                    &:nth-of-type(2) {
-                        margin-left: 10px
-                    }
-                }
-            }
-
             .address-details {
                 display: flex;
                 flex-flow: row wrap;
@@ -390,6 +369,27 @@ export default class Form extends Vue {
                   font-size: 10px;
                 }
               }
+            }
+        }
+
+        .split {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            margin: 0 0 20px;
+
+            .el-input {
+                flex-grow: 1;
+                width: 45%;
+                margin: 0;
+
+                &:nth-of-type(1) {
+                    margin-right: 10px
+                }
+
+                &:nth-of-type(2) {
+                    margin-left: 10px
+                }
             }
         }
 

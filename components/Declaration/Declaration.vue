@@ -4,13 +4,68 @@
             <Drawer 
                 :closeable="true"
                 secure="Formulare salvate" 
-                :title="form.name + ' ' + form.surname" 
+                :title="(form.name ? form.name + ' ' + form.surname : form.employee.name + ' ' + form.employee.surname)" 
                 :style="{height: '100%', maxWidth:'800px', maxHeight: 'unset'}"
                 @close="$refs.drawer.$emit('closeRequest')" 
             >
 
             <content>
-                <div id="capture">
+                <div id="capture" v-if="form.type === 'employer'">
+                    <h1>Adeverință angajator</h1>
+                    <p>
+                        Subsemnatul (nume, prenume), <strong>{{ form.employer.name }} {{ form.employer.surname }}</strong>, în calitate de
+                        (funcția) <strong>{{ form.employer.position }}</strong> în cadrul (organizația) <strong>{{ form.employer.company }}</strong> confirm faptul că deplasarea persoanei menționată
+                        mai jos, între domiciliu și locul său de muncă, este esențială pentru activitatea organizației și nu poate
+                        fi organizată sub formă de telemuncă. 
+                    </p>
+
+                    <p>
+                        Datele persoanei care se deplasează: 
+                    </p>
+                    <ul class="activities">
+                        <li>
+                            <strong>Nume:</strong> {{ form.employee.name }}
+                        </li>
+                        <li>
+                            <strong>Prenume:</strong> {{ form.employee.surname }}
+                        </li>
+                        <li>
+                            <strong>Data nașterii:</strong> {{ form.employee.birthDate }}
+                        </li>
+                        <li>
+                            <strong>Adresa:</strong> {{ form.employee.address.city }}, județul/sectorul {{ form.employee.address.county }},
+                            strada {{ form.employee.address.street }}, bloc {{ form.employee.address.flat }}, etaj {{ form.employee.address.floor }}, apartament {{ form.employee.address.appartment }}
+                        </li>
+                        <li>
+                            <strong>Domeniul activității profesionale:</strong> {{ form.employee.name }}
+                        </li>
+                        <li>
+                            <strong>Locul de desfășurare al activității profesionale:</strong> {{ form.employee.workAddress.city }}, județul/sectorul {{ form.employee.workAddress.county }},
+                            strada {{ form.employee.workAddress.street }}, bloc {{ form.employee.workAddress.flat }}, etaj {{ form.employee.workAddress.floor }}, apartament {{ form.employee.workAddress.appartment }}
+                        </li>
+                        <li>
+                            <strong>Traseul deplasării:</strong> {{ form.employee.route }}
+                        </li>
+                        <li>
+                            <strong>Mijlocul de deplasare:</strong> {{ form.employee.transport }}
+                        </li>
+                    </ul>
+                    <p>Subsemnatul cunosc prevederile art. 326 din Codul Penal cu privire la falsul în declarații și art. 352 din
+                    Codul Penal cu privire la zădărnicirea combaterii bolilor. </p>
+                    <p>
+                        Atât declar, susțin și semnez. <br/>
+                        <strong>Perioada:</strong> {{ form.startTime }} - {{ form.endTime }} <br/>
+                        <strong>Semnătura:</strong> {{ form.employer.name }} {{ form.employer.surname }}
+                    </p>
+                    <p></p>
+                    <ol class="disclaimer">
+                        <li>Se va menționa de către angajator numai perioada/intervalul de timp necesar desfășurării activității de
+                        către angajat, pentru care este justificată deplasarea (ex: perioada decretată pentru starea de urgență sau
+                        mai scurtă), aceasta fiind perioada pentru care este valabilă adeverința.</li>
+                    </ol>
+                </div>
+
+                <div id="capture" v-else>
                     <h1>Declarație pe proprie răspundere,</h1>
                     <p>
                         Subsemnatul(a) <strong>{{ form.name }} {{ form.surname }}</strong>, născut pe data de <strong>{{ form.birthDate }}</strong>, 
@@ -49,9 +104,11 @@
                 <el-row id="buttons">
                     <el-button type="primary" @click="onDocumentPrint()" plain>Print</el-button>
                     <el-button type="warning" @click="onDocumentSave()" plain>Pdf</el-button>
-                    <nuxt-link v-if="$route.name != 'form'" class="el-button el-button--success is-plain" :to="{name: 'form', params: { form: form }}" tag="button">Duplica</nuxt-link>
+                    <nuxt-link v-if="$route.name != 'form' && $route.name != 'form-employer' && form.type != 'employer'" class="el-button el-button--success is-plain" :to="{name: 'form', params: { form: form }}" tag="button">Duplica</nuxt-link>
+                    <nuxt-link v-else-if="$route.name != 'form' && $route.name != 'form-employer' && form.type == 'employer'" class="el-button el-button--success is-plain" :to="{name: 'form-employer', params: { form: form }}" tag="button">Duplica</nuxt-link>
                     <span v-else @click="$refs.drawer.$emit('closeRequest')">
-                    <nuxt-link class="el-button el-button--success is-plain" :to="{path: '/'}" tag="button">Restart</nuxt-link></span>
+                        <nuxt-link class="el-button el-button--success is-plain" :to="{path: '/'}" tag="button">Restart</nuxt-link>
+                    </span>
                 </el-row>
             </template>
 

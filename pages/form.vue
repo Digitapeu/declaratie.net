@@ -237,6 +237,7 @@ export default class Form extends Vue {
     ]
 
     public form: any = {
+        type: 'normal',
         name: '',
         surname: '',
         address: {
@@ -316,7 +317,11 @@ export default class Form extends Vue {
     private uid(form: any) {
         let id: string
 
-        id = form.name.toLowerCase() + form.surname.toLowerCase();
+        if (!form.type || form.type === 'employer') {
+            return false
+        }
+
+        id = form.name.toLowerCase() + form.surname.toLowerCase() + form.type.toLowerCase()
         id = id.replace(/\s/g,'');
 
         return id;

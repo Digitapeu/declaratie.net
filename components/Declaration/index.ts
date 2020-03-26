@@ -28,7 +28,11 @@ export default class Declaration extends Vue {
     }
 
     public mounted() {
-        this.generatePdf();
+        if (this.form.type === 'employer') {
+            this.generateEmployerPdf();
+        } else {
+            this.generatePdf();
+        }
     }
 
     public generatePdf() {
@@ -140,6 +144,100 @@ export default class Declaration extends Vue {
 
         this.doc = pdfMake.createPdf(dd)
 
+    }
+
+    public generateEmployerPdf() {
+        let dd = {
+            content: [
+                {
+                    text: '\n\nAdeverință angajator\n\n\n',
+                    style: 'header',
+                    alignment: 'center'
+                },
+                {
+                    text: [
+                        'Subsemnatul ', {text: this.form.employer.name, bold:true}, ' ', {text: this.form.employer.surname, bold:true}, ', în calitate de ',
+                        {text: this.form.employer.position, bold:true}, ' în cadrul ', {text: this.form.employer.company, bold:true},
+                        ' confirm faptul că deplasarea persoanei menționată',
+                        'mai jos, între domiciliu și locul său de muncă, este esențială pentru activitatea organizației și nu poate',
+                        'fi organizată sub formă de telemuncă.\n\n',
+                        'Datele persoanei care se deplasează: \n'
+                    ],
+                    alignment: 'justify'
+                },
+                {
+                    text: [
+                        'Nume : \n',
+                        {text: this.form.employee.name + '\n', bold: true, fontSize: 14},
+                        'Prenume : \n',
+                        {text: this.form.employee.surname + '\n', bold: true, fontSize: 14},
+                        'Data nașterii  : \n',
+                        {text: this.form.employee.birthDate + '\n', bold: true, fontSize: 14},
+                        'Adresa : \n',
+                        {text: this.form.employee.address.city + ', județul/sectorul '+ this.form.employee.address.county + ', '
+                        + 'strada ' + this.form.employee.address.street + (this.form.employee.address.flat ? ', bloc ' + this.form.employee.address.flat : '') 
+                        + (this.form.employee.address.floor ? ', etaj ' + this.form.employee.address.floor : '') 
+                        + (this.form.employee.address.appartment ? ', apartament ' + this.form.employee.address.appartment : '') + '\n', bold: true, fontSize: 14},
+                        'Domeniul activității profesionale : \n',
+                        {text: this.form.employee.domain + '\n', bold: true, fontSize: 14},
+                        'Locul de desfășurare al activității profesionale : \n',
+                        {text: this.form.employee.workAddress.city + ', județul/sectorul '+ this.form.employee.workAddress.county + ', '
+                        + 'strada ' + this.form.employee.workAddress.street + (this.form.employee.workAddress.flat ? ', bloc ' + this.form.employee.workAddress.flat : '') 
+                        + (this.form.employee.workAddress.floor ? ', etaj ' + this.form.employee.workAddress.floor : '') 
+                        + (this.form.employee.workAddress.appartment ? ', apartament ' + this.form.employee.workAddress.appartment : '') + '\n', bold: true, fontSize: 14},
+                        'Traseul deplasării : \n',
+                        {text: this.form.employee.route + '\n', bold: true, fontSize: 14},
+                        'Mijlocul de deplasare : \n',
+                        {text: this.form.employee.transport + '\n', bold: true, fontSize: 14},
+                    ],
+                    margin: [40, 20]
+                },
+                {
+                    text: [
+                        {
+                            text: '\nSubsemnatul cunosc prevederile art. 326 din Codul Penal cu privire la falsul în declarații și art. 352 din Codul Penal cu privire la zădărnicirea combaterii bolilor. \n\n\n\n\n\n\n\n',
+                        }
+                    ]
+                },
+                {
+                    columns: [
+                        {
+                            text: [
+                                {text: 'Perioada: ', bold: true}, this.form.signingDate, '\n',  
+                            ]
+                        },
+                        {
+                            text: [
+                                {text: 'Semnătura: ', bold: true}, '............................', '\n\n\n',
+                            ]
+                        }
+                    ]
+                },
+                {
+                    text: "Se va menționa de către angajator numai perioada/intervalul de timp necesar desfășurării activității de către angajat, pentru care este justificată deplasarea (ex: perioada decretată pentru starea de urgență sau mai scurtă), aceasta fiind perioada pentru care este valabilă adeverința.",
+                }
+            ],
+            styles: {
+                header: {
+                    fontSize: 18,
+                    bold: true
+                },
+                smaller: {
+                    fontSize: 9,
+                    italics: true
+                },
+                bigger: {
+                    fontSize: 15,
+                    italics: true
+                },
+                marginBottom: {
+                    margin: [0, 0, 50, 0]
+                }
+            }
+            
+        }
+
+        this.doc = pdfMake.createPdf(dd)
     }
 
     public onDocumentPrint() {

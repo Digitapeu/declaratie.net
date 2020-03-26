@@ -24,7 +24,7 @@
                 <el-divider>data nasterii</el-divider>
 
                 <el-form-item prop="birthDate">
-                    <el-date-picker v-model="form.birthDate" type="date" placeholder="Data nasterii"></el-date-picker>
+                    <el-date-picker v-model="form.birthDate" format="dd-MM-yyyy" value-format="dd-MM-yyyy" type="date" placeholder="Data nasterii"></el-date-picker>
                 </el-form-item>
 
             </el-row>
@@ -316,9 +316,7 @@ export default class Form extends Vue {
     private uid(form: any) {
         let id: string
 
-        id = form.name.toLowerCase() + form.surname.toLowerCase() 
-                + form.mother.toLowerCase() + form.father.toLowerCase();
-
+        id = form.name.toLowerCase() + form.surname.toLowerCase();
         id = id.replace(/\s/g,'');
 
         return id;

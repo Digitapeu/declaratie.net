@@ -55,11 +55,11 @@ export default class Declaration extends Vue {
                         {
                             text: [
                                 this.form.name, ' ', this.form.surname, '\n',
-                                this.form.birthday.day, '/', this.form.birthday.month, '/', this.form.birthday.year, '\n',
+                                this.form.birthDate, '\n',
                                 this.form.address.city, ', județul/sectorul ', this.form.address.county, ', strada ', this.form.address.street,  '\n',
                                 this.form.address.flat ? 'bloc ' + this.form.address.flat + ', ' : '', 
                                 this.form.address.floor ? 'etaj ' + this.form.address.floor + ', ' : '',
-                                this.form.address.appartment ? 'apartament ' + this.form.address.appartment + ', \n' : '\n',
+                                this.form.address.appartment ? 'apartament ' + this.form.address.appartment + ', \n\n' : '\n',
                                 {
                                     text: 'Se va completa adresa locuinței în care persoana locuiește în fapt, indiferent dacă este identică sau nu cu cea menționată în actul de identitate.\n\n\n',
                                     fontSize: 9
@@ -107,7 +107,7 @@ export default class Declaration extends Vue {
                         },
                         {
                             text: [
-                                {text: 'Semnătura: ', bold: true}, '............................', '\n\n\n\n\n\n',
+                                {text: 'Semnătura: ', bold: true}, '............................', '\n\n\n',
                             ]
                         }
                     ]

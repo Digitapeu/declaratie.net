@@ -1,6 +1,8 @@
 # declaratie.net
 
-Mobile-friendly web app that helps you generate the PDF statement required for leaving the house during the state of emergency triggered by COVID-19 here in Romania. 
+[declaratie.net](https://declaratie.net) este aplicatia prin care oricine cu un telefon mobil sau calculator poate sa-si completeze rapid declaratia pe proprie raspundere ceruta de Guvernul Romaniei in contextul crizei COVID-19.
+
+Aplicatia este dezvoltata si intretinuta de [Digitap](https://digitap.eu), o companie clujeana. Codul sursa este public si poate fi verificat de oricine.
 
 ## Build Setup
 

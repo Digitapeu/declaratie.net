@@ -13,19 +13,11 @@
                 <div id="capture">
                     <h1>Declarație pe proprie răspundere,</h1>
                     <p>
-                        Subsemnatul(a) <strong>{{ form.name }} {{ form.surname }}</strong>, {{ form.descendant == '1' ? 'fiica' : 'fiul' }} lui <strong>{{ form.father }}</strong> și al lui <strong>{{ form.mother }}</strong>, 
-                        domiciliat(ă) în {{ form.address.city }}, județul/sectorul {{ form.address.county }}, 
-                        strada {{ form.address.street }}, <span v-if="form.address.flat">bloc {{ form.address.flat }},</span> 
+                        Subsemnatul(a) <strong>{{ form.name }} {{ form.surname }}</strong>, născut pe data de <strong>{{ form.birthDate }}</strong>, 
+                        domiciliat(ă) în <strong>{{ form.address.city }}</strong>, județul/sectorul <strong>{{ form.address.county }}</strong>, 
+                        strada <strong>{{ form.address.street }}</strong>, <span v-if="form.address.flat">bloc {{ form.address.flat }},</span> 
                         <span v-if="form.address.floor">etaj {{ form.address.floor }},</span> 
-                        <span v-if="form.address.appartment">apartament {{ form.address.appartment }},</span> având CNP <strong>{{ form.cnp }}</strong>, 
-                        BI/CI seria <strong>{{ form.id.series }}</strong>, număr <strong>{{ form.id.number }}</strong>,
-                    </p>
-
-                    <p>
-                        Locuind în fapt(1) în localitatea {{ form.residence.city }}, județul/sectorul {{ form.residence.county }}, strada {{ form.residence.street }}, 
-                        <span v-if="form.residence.flat">bloc {{ form.residence.flat }},</span> 
-                        <span v-if="form.residence.floor">etaj {{ form.residence.floor }},</span> 
-                        <span v-if="form.residence.appartment">apartament {{ form.residence.appartment }},</span>
+                        <span v-if="form.address.appartment">apartament {{ form.address.appartment }},</span>
                     </p>
 
                     <p>

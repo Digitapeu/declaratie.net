@@ -33,6 +33,8 @@ export default class Declaration extends Vue {
 
     public generatePdf() {
 
+        let reasons = JSON.parse(JSON.stringify(this.form.reasons));
+
         let dd = {
             content: [
                 {
@@ -74,13 +76,13 @@ export default class Declaration extends Vue {
                 },
                 {
                     type: 'square',
-                    ul: this.form.reasons
+                    ul: reasons
                 },
                 {
                     text: [
                         '\n\n\n', 'Atât declar, susțin și semnez.\n',
                         {text: 'Data: ', bold: true}, this.form.signingDate, '\n', 
-                        {text: 'Semnătura: ', bold: true}, this.form.name + ' ' + this.form.surname, '\n\n\n\n\n', 
+                        {text: 'Semnătura: ', bold: true}, this.form.name + ' ' + this.form.surname, '\n\n\n\n\n\n\n\n\n\n', 
                     ]
                 },
                 {
@@ -114,7 +116,7 @@ export default class Declaration extends Vue {
     }
 
     public onDocumentPrint() {
-        this.doc.open();
+        this.doc.print();
     }
 
     public onDocumentSave() {

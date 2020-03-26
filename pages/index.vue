@@ -140,14 +140,16 @@ export default class Index extends Vue {
     }
 
     .el-button {
-        width: 80%;
-        font-size: 24px;
+        width: 90%;
+        font-size: 22px;
         text-decoration: none;
-        margin: 15px auto;
+        margin: 10px auto;
+        padding: 20px 0;
 
         @media screen and (max-width: 350px){
             font-size: 18px;
             width: 90%;
+            margin: 5px;
         }
     }
 

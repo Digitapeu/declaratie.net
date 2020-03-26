@@ -98,7 +98,9 @@
         </el-row>
     </el-form>
 
-    <Declaration v-if="isCreated" @close="isCreated = false" v-bind="{ form }"/>
+    <portal to="drawer">
+      <Declaration v-if="isCreated" @close="isCreated = false" v-bind="{ form }"/>
+    </portal>
 
     <p class="text simple">* Informatiile din formular sunt salvate doar in browser</p>
     <p class="text simple">* Aplicatia nu colecteaza niciun fel de date personale</p>

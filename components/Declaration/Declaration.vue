@@ -57,7 +57,7 @@
                 <el-row id="buttons">
                     <el-button type="primary" @click="onDocumentPrint()">Print</el-button>
                     <el-button type="warning" @click="onDocumentSave()">Salveaza .pdf</el-button>
-                    <el-button type="success" plain @click>Duplica</el-button>
+                    <nuxt-link v-if="$route.name != 'form'" class="el-button el-button--success is-plain" :to="{name: 'form', params: { form: form }}" tag="button">Duplica</nuxt-link>
                 </el-row>
             </template>
 

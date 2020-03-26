@@ -45,7 +45,7 @@ export default class Declaration extends Vue {
                 {
                     text: [
                         'Subsemnatul(a) ', {text: this.form.name, fontSize: 14, bold: true}, ' ', {text: this.form.surname, fontSize: 14, bold: true}, ', ',
-                        this.form.descendant == '1' ? 'fiica' : 'fiul' + ' lui ', {text: this.form.father, fontSize: 14, bold: true}, ' și al lui ', {text: this.form.mother, fontSize: 14, bold: true}, ', ',
+                        this.form.descendant == '1' ? 'fiica' : 'fiul', ' lui ', {text: this.form.father, fontSize: 14, bold: true}, ' și al lui ', {text: this.form.mother, fontSize: 14, bold: true}, ', ',
                         'domiciliat(ă) în ', {text: this.form.address.city, fontSize: 14, bold: true}, ', județul/sectorul ', {text: this.form.address.county, fontSize: 14, bold: true}, ', ',
                         'strada ', {text: this.form.address.street, fontSize: 14, bold: true}, ', ', 
                         {text: this.form.address.flat ? 'bloc ' + this.form.address.flat + ', ' : '', fontSize: 14, bold: true},

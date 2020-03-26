@@ -113,7 +113,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator';
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator';
 
 import Logo from '@/components/Logo';
 import Declaration from '@/components/Declaration';
@@ -188,12 +188,25 @@ export default class Form extends Vue {
     }
 
     public mounted() {
+        this.refreshForm();
+
         if (localStorage.getItem('forms')) {
             try {
                 this.forms = JSON.parse(localStorage.getItem('forms') || '{}');
             } catch(e) {
                 localStorage.removeItem('forms');
             }
+        }
+    }
+
+    @Watch("$route.params.form")
+    public onRouteParamsChange() {
+        this.refreshForm();
+    }
+
+    public refreshForm() {
+        if (this.$route.params.form) {
+            this.form = this.$route.params.form;
         }
     }
 

@@ -31,7 +31,7 @@
                     <p>
                         Cunoscând prevederile articolului 326, referitoare la falsul în declarații(2), precum si ale art. 352 referitoare la zădărnicirea combaterii bolilor din Noul Cod Penal, 
                         declar pe proprie răspundere faptul că mă deplasez în interes <strong>{{ form.interest == '1' ? 'personal' : 'profesional' }}</strong>, intre orele <strong>{{ form.startTime }} - {{ form.endTime }}</strong>, 
-                        de la <u>{{ form.from }}, până la {{ form.to }}</u>, pentru(3):
+                        de la <u>{{ form.from }}, până la {{ form.to }}</u>, pentru:
                     </p>
                     <ol type="a" class="activities">
                         <li v-for="reason in form.reasons" v-bind:key="reason">
@@ -55,10 +55,11 @@
 
             <template #footer>
                 <el-row id="buttons">
-                    <el-button type="primary" @click="onDocumentPrint()">Print</el-button>
-                    <el-button type="warning" @click="onDocumentSave()">Salveaza .pdf</el-button>
+                    <el-button type="primary" @click="onDocumentPrint()" plain>Print</el-button>
+                    <el-button type="warning" @click="onDocumentSave()" plain>Pdf</el-button>
                     <nuxt-link v-if="$route.name != 'form'" class="el-button el-button--success is-plain" :to="{name: 'form', params: { form: form }}" tag="button">Duplica</nuxt-link>
-                    <span v-else @click="$refs.drawer.$emit('closeRequest')"><nuxt-link class="el-button el-button--success is-plain" :to="{path: '/'}" tag="button">Restart</nuxt-link></span>
+                    <span v-else @click="$refs.drawer.$emit('closeRequest')">
+                    <nuxt-link class="el-button el-button--success is-plain" :to="{path: '/'}" tag="button">Restart</nuxt-link></span>
                 </el-row>
             </template>
 

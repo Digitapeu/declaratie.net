@@ -1,46 +1,47 @@
 <template>
-    <div class="container">
-        <div id="hashtag">#stamacasa</div>
-        <Logo />
-        <p>Completeaza usor si rapid <br/>declaratia pe proprie raspundere ( <strong>obligatorie</strong> ) <br/>conform ordonantei militare nr. 3</p>
-        
-        <el-row>
-            <nuxt-link class="el-button el-button--primary" :to="{path: '/form'}">Completeaza formularul</nuxt-link>
-            <el-button type="default" @click="showForm = true">Formulare salvate</el-button>
-        </el-row>
+<div class="container">
+    <div id="hashtag">#stamacasa</div>
+    <Logo />
+    <p>Completeaza usor si rapid <br />declaratia pe proprie raspundere ( <strong>obligatorie</strong> ) <br />conform ordonantei militare nr. 3</p>
 
-        <el-row id="sharer" @click.native="share" style="cursor: pointer">
-            <ShareIcon/>
-            Trimite la familie si prieteni
-        </el-row>
+    <el-row>
+        <nuxt-link class="el-button el-button--primary" :to="{path: '/form'}">Completeaza formularul</nuxt-link>
+        <el-button type="default" @click="showForm = true">Formulare salvate</el-button>
+    </el-row>
 
-        
-        <Backdrop v-if="showForm" ref="drawer" @close="showForm = false" :closeable="true" :fixed="false" :transition="{name: 'slide-up', mode: 'out-in', appear: true}">
-            <Drawer 
-                :closeable="true"
-                secure="Formulare salvate" 
-                title="Click pe nume" 
-                @close="$refs.drawer.$emit('closeRequest')" 
-            >
-                
-                <ul v-if="forms.length" class="forms">
-                    <li v-for="(entry,index) in forms" :key="`form-${index}`">
-                        <el-button v-if="entry.name && entry.surname" type="default" @click="form = entry">{{ entry.name }} {{ entry.surname }}</el-button>
-                    </li>
-                </ul>
-                <p v-else>
-                    Inca nu ai nicio declaratie completata
-                </p>
+    <el-row id="sharer" @click.native="share()" style="cursor: pointer">
+        <ShareIcon />
+        Trimite la familie si prieteni
+    </el-row>
 
-            </Drawer>
-        </Backdrop>
+    <Backdrop v-if="showForm" ref="drawer" @close="showForm = false" :closeable="true" :fixed="false" :transition="{name: 'slide-up', mode: 'out-in', appear: true}">
+        <Drawer :closeable="true" secure="Formulare salvate" title="Selecteaza o declaratie" @close="$refs.drawer.$emit('closeRequest')">
 
-        <Declaration v-if="form.id" @close="form = {}" v-bind="{ form }"/>
-    </div>
+            <ul v-if="forms.length" class="forms">
+                <li v-for="(entry,index) in forms" :key="`form-${index}`">
+                    <el-button v-if="entry.name && entry.surname" type="default" @click="form = entry">
+                        {{ entry.name }} {{ entry.surname }}
+                        <span class="date">{{ entry.signingDate}}</span>
+                    </el-button>
+                </li>
+            </ul>
+            <p v-else>
+                Inca nu ai nicio declaratie completata
+            </p>
+
+        </Drawer>
+    </Backdrop>
+
+    <Declaration v-if="form.id" @close="form = {}" v-bind="{ form }" />
+</div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator';
+import {
+    Vue,
+    Component,
+    Prop
+} from 'vue-property-decorator';
 
 import Logo from '@/components/Logo';
 import Drawer from '@/components/Drawer';
@@ -49,35 +50,44 @@ import Declaration from '@/components/Declaration';
 import ShareIcon from '@/assets/svg/share.svg?inline';
 
 @Component({
-  name: 'home',
-  components: {
-    Logo,
-    Drawer,
-    Backdrop,
-    Declaration,
-    ShareIcon
-  },
-  methods: {
-      share(){
-        let navigator: any;
+    name: 'home',
+    components: {
+        Logo,
+        Drawer,
+        Backdrop,
+        Declaration,
+        ShareIcon
+    },
+    methods: {
+        async share() {
+            console.log('Started sharing...');
 
-        console.log('Started sharing...');
+            type ShareData = {
+                title?: string;
+                text?: string;
+                url?: string;
+            };
 
-        if (navigator.share) {
-            navigator.share({
-                title: `Declaratia pe raspundere proprie pentru deplasari - declaratie.net`,
-                text: `Completeaza-ti online declaratia. Merge foarte bine pe mobil`,
-                url: `${window.location.origin}${this.$route.path}?utm_source=share`,
-            })
-            .then(() => {
-                console.log('Successful share');
-            })
-            .catch((error: any) => {
-                console.log({...error});
-            });
+            // extending window.navigator, which has a type of Navigator
+            interface SharableNavigator extends Navigator {
+                share: (data?: ShareData) => Promise<void>;
+            }
+
+            function isSharableNavigator(nav: Navigator): nav is SharableNavigator {
+                return typeof (nav as SharableNavigator).share === 'function';
+            }
+
+            if (isSharableNavigator(window.navigator)) {
+                try {
+                    await window.navigator.share({ // no error
+                        title: `Declaratia pe raspundere proprie pentru deplasari - declaratie.net`,
+                        text: `Completeaza-ti online declaratia. Merge foarte bine pe mobil`,
+                        url: `${window.location.origin}${this.$route.path}?utm_source=share`,
+                    });
+                } catch (e) {}
+            }
         }
     }
-  }
 })
 
 export default class Index extends Vue {
@@ -95,7 +105,7 @@ export default class Index extends Vue {
         if (localStorage.getItem('forms')) {
             try {
                 this.forms = JSON.parse(localStorage.getItem('forms') || '{}');
-            } catch(e) {
+            } catch (e) {
                 localStorage.removeItem('forms');
             }
         }
@@ -119,14 +129,17 @@ export default class Index extends Vue {
         transform: translate3D(0, 45deg, 0);
     }
 
-    @media screen and (min-width: 990px){
+    @media screen and (min-width: 990px) {
         background-color: unset;
     }
 
-    p { 
-        text-align: center; width: 100%; padding: 5px; box-sizing: border-box;
+    p {
+        text-align: center;
+        width: 100%;
+        padding: 5px;
+        box-sizing: border-box;
 
-        @media screen and (max-width: 350px){
+        @media screen and (max-width: 350px) {
             font-size: 12px;
         }
     }
@@ -138,19 +151,23 @@ export default class Index extends Vue {
         margin: 30px auto;
         align-items: center;
 
-        @media screen and (max-width: 350px){
+        @media screen and (max-width: 350px) {
             margin: 0 auto;
         }
     }
 
     .el-button {
         width: 90%;
-        font-size: 22px;
+        font-size: 14px;
         text-decoration: none;
         margin: 5px auto;
         padding: 20px 0;
 
-        @media screen and (max-width: 350px){
+        .date {
+            font-weight: bold;
+        }
+
+        @media screen and (max-width: 350px) {
             font-size: 18px;
             width: 90%;
             margin: 5px;
@@ -176,7 +193,7 @@ export default class Index extends Vue {
     #sharer {
         display: none;
 
-        @media screen and (max-width: 600px){
+        @media screen and (max-width: 600px) {
             display: flex;
             flex-flow: column;
             align-items: center;

@@ -101,6 +101,8 @@
                     <el-input v-model="form.employee.workAddress.appartment" placeholder="Apt."></el-input>
                 </el-row>
 
+                <br/>
+
                 <el-form-item prop="employee.route">
                     <el-input v-model="form.employee.route" placeholder="Traseul deplasării"></el-input>
                 </el-form-item>

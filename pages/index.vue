@@ -6,6 +6,7 @@
 
     <el-row>
         <nuxt-link class="el-button el-button--primary" :to="{path: '/form'}">Completeaza formularul</nuxt-link>
+        <nuxt-link class="el-button el-button--primary" :to="{path: '/form'}">Completeaza formularul angajatorului</nuxt-link>
         <el-button type="default" @click="showForm = true">Formulare salvate</el-button>
     </el-row>
 
@@ -168,9 +169,10 @@ export default class Index extends Vue {
         }
 
         @media screen and (max-width: 350px) {
-            font-size: 18px;
+            font-size: 12px;
             width: 90%;
             margin: 5px;
+            padding: 15px;
         }
     }
 
@@ -208,6 +210,15 @@ export default class Index extends Vue {
                 cursor: pointer;
             }
         }
+
+         @media screen and (max-width: 350px) {
+             svg {
+                width: 30px;
+                height: 30px;
+                margin: 15px auto;
+                cursor: pointer;
+            }
+         }
     }
 }
 </style>

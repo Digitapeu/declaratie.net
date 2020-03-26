@@ -21,13 +21,15 @@
                     <el-input v-model="form.surname" placeholder="Prenume"></el-input>
                 </el-form-item>
 
-                <el-row class="descendants">
+                <!-- <el-row class="descendants">
                     <el-form-item prop="descendant">
                         <el-radio v-model="form.descendant" label="1" border>Fiica</el-radio>
                         <el-radio v-model="form.descendant" label="2" border>Fiul</el-radio>
                     </el-form-item>
                 </el-row>
+
                 <el-divider>lui</el-divider>
+
                 <el-row class="split">
                     <el-form-item prop="mother">
                         <el-input v-model="form.mother" placeholder="Mama"></el-input>
@@ -36,7 +38,11 @@
                     <el-form-item prop="father">
                         <el-input v-model="form.father" placeholder="Tata"></el-input>
                     </el-form-item>
-                </el-row>
+                </el-row> -->
+
+                <el-form-item prop="birthDate">
+                    <el-date-picker v-model="birthDate" type="date" placeholder="Data nasterii"></el-date-picker>
+                </el-form-item>
 
                 <!-- <el-divider>Carte de identitate</el-divider>
                 <el-row class="split">
@@ -224,6 +230,11 @@ export default class Form extends Vue {
                 message: 'Te rugam sa-ti introduci prenumele',
                 trigger: 'blur'
             }, ],
+            birthDate: [{
+                required: true,
+                message: 'Te rugam sa-ti introduci data nasterii',
+                trigger: 'blur'
+            }, ],
             // cnp: [{
             //         required: true,
             //         message: 'Te rugam sa introduci CNP-ul tau',
@@ -255,21 +266,21 @@ export default class Form extends Vue {
             //         trigger: 'blur'
             //     }, ],
             // },
-            descendant: [{
-                required: true,
-                message: 'Te rugam sa selectezi o optiune',
-                trigger: 'blur'
-            }, ],
-            mother: [{
-                required: true,
-                message: 'Numele mamei',
-                trigger: 'blur'
-            }, ],
-            father: [{
-                required: true,
-                message: 'Numele tatalui',
-                trigger: 'blur'
-            }, ],
+            // descendant: [{
+            //     required: true,
+            //     message: 'Te rugam sa selectezi o optiune',
+            //     trigger: 'blur'
+            // }, ],
+            // mother: [{
+            //     required: true,
+            //     message: 'Numele mamei',
+            //     trigger: 'blur'
+            // }, ],
+            // father: [{
+            //     required: true,
+            //     message: 'Numele tatalui',
+            //     trigger: 'blur'
+            // }, ],
         },
         {
             address: {
@@ -529,6 +540,8 @@ export default class Form extends Vue {
                     }
                 }
             }
+
+            .el-date-editor { width: 100%; }
 
             .descendants {
                 display: flex;

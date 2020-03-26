@@ -23,11 +23,9 @@
 
                 <el-divider>data nasterii</el-divider>
 
-                <el-row class="address-details">
-                    <el-input v-model="form.birthday.day" placeholder="Zi"></el-input>
-                    <el-input v-model="form.birthday.month" placeholder="Luna"></el-input>
-                    <el-input v-model="form.birthday.year" placeholder="An"></el-input>
-                </el-row>
+                <el-form-item prop="birthDate">
+                    <el-date-picker v-model="form.birthDate" type="date" placeholder="Data nasterii"></el-date-picker>
+                </el-form-item>
 
             </el-row>
         </el-form>
@@ -174,38 +172,11 @@ export default class Form extends Vue {
                 message: 'Te rugam sa-ti introduci prenumele',
                 trigger: 'blur'
             }, ],
-            descendant: [{
+            birthDate: [{
                 required: true,
-                message: 'Te rugam sa selectezi o optiune',
+                message: 'Te rugam sa-ti introduci data nasterii',
                 trigger: 'blur'
-            }, ],
-            mother: [{
-                required: true,
-                message: 'Numele mamei',
-                trigger: 'blur'
-            }, ],
-            father: [{
-                required: true,
-                message: 'Numele tatalui',
-                trigger: 'blur'
-            }, ],
-            birthday: {
-                day: [{
-                    required: true,
-                    message: 'Ziua nasterii',
-                    trigger: 'blur'
-                }, ],
-                month: [{
-                    required: true,
-                    message: 'Luna nasterii',
-                    trigger: 'blur'
-                }, ],
-                year: [{
-                    required: true,
-                    message: 'Anul nasterii',
-                    trigger: 'blur'
-                }, ],
-            }
+            }, ]
         },
         {
             address: {
@@ -277,11 +248,7 @@ export default class Form extends Vue {
             floor: '',
             appartment: ''
         },
-        birthday: {
-            day: '',
-            month: '',
-            year: ''
-        },
+        birthDate: '',
         interest: '',
         startTime: '',
         endTime: '',
@@ -463,6 +430,8 @@ export default class Form extends Vue {
                     }
                 }
             }
+
+            .el-date-editor { width: 100%; }
 
             .descendants {
                 display: flex;

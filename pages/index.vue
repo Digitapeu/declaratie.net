@@ -132,6 +132,10 @@ export default class Index extends Vue {
         font-weight: bold;
         color: red;
         transform: translate3D(0, 45deg, 0);
+
+        @media screen and (max-width: 400px) {
+            font-size: 18px;
+        }
     }
 
     @media screen and (min-width: 990px) {
@@ -156,8 +160,8 @@ export default class Index extends Vue {
         margin: 30px auto;
         align-items: center;
 
-        @media screen and (max-width: 350px) {
-            margin: 0 auto;
+        @media screen and (max-width: 400px) {
+            margin: 20px auto 0 auto;
         }
     }
 

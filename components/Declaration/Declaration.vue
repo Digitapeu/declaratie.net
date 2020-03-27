@@ -30,7 +30,7 @@
                             <strong>Prenume:</strong> {{ form.employee.surname }}
                         </li>
                         <li>
-                            <strong>Data nașterii:</strong> {{ form.employee.birthDate }}
+                            <strong>Data nașterii:</strong> {{ form.employee.day + ' ' + form.employee.month + ' ' + form.employee.year }}
                         </li>
                         <li>
                             <strong>Adresa:</strong> {{ form.employee.address.city }}, județul/sectorul {{ form.employee.address.county }},
@@ -68,7 +68,8 @@
                 <div id="capture" v-else>
                     <h1>Declarație pe proprie răspundere,</h1>
                     <p>
-                        Subsemnatul(a) <strong>{{ form.name }} {{ form.surname }}</strong>, născut pe data de <strong>{{ form.birthDate }}</strong>, 
+                        Subsemnatul(a) <strong>{{ form.name }} {{ form.surname }}</strong>, născut pe data de 
+                        <strong>{{ form.day + ' '+ form.month + ' ' + form.year }}</strong>, 
                         domiciliat(ă) în <strong>{{ form.address.city }}</strong>, județul/sectorul <strong>{{ form.address.county }}</strong>, 
                         strada <strong>{{ form.address.street }}</strong>, <span v-if="form.address.flat">bloc {{ form.address.flat }},</span> 
                         <span v-if="form.address.floor">etaj {{ form.address.floor }},</span> 

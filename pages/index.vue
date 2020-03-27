@@ -24,10 +24,12 @@
                         {{ entry.name }} {{ entry.surname }}
                         <span class="date">{{ entry.signingDate}}</span>
                     </el-button>
-                    <el-button v-else-if="entry.employee.name && entry.employee.surname" type="default" @click="form = entry">
-                        {{ entry.employee.name }} {{ entry.employee.surname }}
-                        <span class="date">{{ entry.signingDate}}</span>
-                    </el-button>
+                    <template v-if="entry.employee">
+                        <el-button v-if="entry.employee.name && entry.employee.surname" type="default" @click="form = entry">
+                            {{ entry.employee.name }} {{ entry.employee.surname }}
+                            <span class="date">{{ entry.signingDate}}</span>
+                        </el-button>
+                    </template>
                 </li>
             </ul>
             <p v-else>
@@ -37,7 +39,9 @@
         </Drawer>
     </Backdrop>
 
-    <Declaration v-if="form.signingDate" @close="form = {}" v-bind="{ form }" />
+    <portal to="drawer">
+        <Declaration v-if="form.signingDate" @close="form = {}" v-bind="{ form }" />
+    </portal>
 </div>
 </template>
 
@@ -126,12 +130,14 @@ export default class Index extends Vue {
     z-index: 10;
 
     #hashtag {
-        position: absolute;
-        top: 20px;
         font-size: 30px;
         font-weight: bold;
         color: red;
         transform: translate3D(0, 45deg, 0);
+
+        @media screen and (max-width: 400px) {
+            font-size: 18px;
+        }
     }
 
     @media screen and (min-width: 990px) {
@@ -156,8 +162,8 @@ export default class Index extends Vue {
         margin: 30px auto;
         align-items: center;
 
-        @media screen and (max-width: 350px) {
-            margin: 0 auto;
+        @media screen and (max-width: 400px) {
+            margin: 20px auto 0 auto;
         }
     }
 

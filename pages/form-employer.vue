@@ -43,9 +43,30 @@
                     <el-input v-model="form.employee.surname" placeholder="Prenume"></el-input>
                 </el-form-item>
 
-                <el-form-item prop="employee.birthDate">
-                    <el-date-picker v-model="form.employee.birthDate" format="dd-MM-yyyy" value-format="dd-MM-yyyy" type="date" placeholder="Data nasterii"></el-date-picker>
-                </el-form-item>
+                <el-row class="date">
+                    <!-- <el-form-item prop="birthDate">
+                      <el-date-picker v-model="form.birthDate" format="dd-MM-yyyy" value-format="dd-MM-yyyy" type="date" placeholder="Data nasterii"></el-date-picker>
+                  </el-form-item> -->
+                    <el-form-item prop="employee.day">
+                        <el-select v-model="form.employee.day" placeholder="Ziua">
+                            <el-option v-for="(item,index) in days" :key="`day-${index}`" :label="item" :value="item"></el-option>
+                        </el-select>
+                    </el-form-item>
+
+                    <el-form-item prop="employee.month">
+                        <el-select v-model="form.employee.month" placeholder="Luna">
+                            <el-option v-for="(item,index) in months" :key="`month-${index}`" :label="item" :value="item"></el-option>
+                        </el-select>
+                    </el-form-item>
+
+                    <el-form-item prop="employee.year">
+                        <el-select v-model="form.employee.year" placeholder="Anul">
+                            <el-option v-for="(item,index) in years" :key="`year-${index}`" :label="item" :value="item"></el-option>
+                        </el-select>
+                    </el-form-item>
+
+                </el-row>
+
                 
                 <el-divider content-position="center">Domiciliul curent</el-divider>
 
@@ -100,6 +121,8 @@
                     <el-input v-model="form.employee.workAddress.floor" placeholder="Etaj"></el-input>
                     <el-input v-model="form.employee.workAddress.appartment" placeholder="Apt."></el-input>
                 </el-row>
+
+                <br/>
 
                 <el-form-item prop="employee.route">
                     <el-input v-model="form.employee.route" placeholder="Traseul deplasării"></el-input>
@@ -167,6 +190,10 @@ export default class Form extends Vue {
         'Finalizeaza'
     ];
 
+    public days: any = Array.from(Array(31).keys()).map(index => index + 1);
+    public months: any = ['Ian', 'Feb', 'Mar', 'Apr', 'Mai', 'Iun', 'Iul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    public years: any = Array.from(Array(102).keys()).map(index => 1900 + index + 1);
+
     public rules: any = [{
             employer: {
                 name: [{
@@ -203,11 +230,21 @@ export default class Form extends Vue {
                     message: 'Te rugam sa-i introduci prenumele',
                     trigger: 'blur'
                 }, ],
-                birthDate: [{
+                day: [{
                     required: true,
-                    message: 'Te rugam sa-i introduci data de naster',
+                    message: 'Camp obligatoriu',
                     trigger: 'blur'
-                }, ],
+                }],
+                month: [{
+                    required: true,
+                    message: 'Camp obligatoriu',
+                    trigger: 'blur'
+                }],
+                year: [{
+                    required: true,
+                    message: 'Camp obligatoriu',
+                    trigger: 'blur'
+                }],
                 address: {
                     city: [{
                         required: true,
@@ -296,7 +333,9 @@ export default class Form extends Vue {
         employee: {
             name: '',
             surname: '',
-            birthDate: '',
+            day: '',
+            month: '',
+            year: '',
             address: {
                 city: '',
                 county: '',
@@ -578,6 +617,21 @@ export default class Form extends Vue {
                     @media screen and (max-width: 350px) {
                         font-size: 10px;
                     }
+                }
+            }
+
+            .date {
+                display: flex;
+                flex-flow: row;
+                justify-content: space-between;
+
+                &:before,
+                &:after {
+                    content: unset;
+                }
+
+                .el-form-item {
+                    width: 30%;
                 }
             }
         }

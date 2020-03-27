@@ -1,3 +1,6 @@
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
 export default {
   mode: 'spa',
   /*
@@ -52,6 +55,75 @@ export default {
    */
   build: {
     transpile: [/^element-ui/],
+    minimize: true,
+    analyze: false,
+    splitChunks: {
+        layouts: false,
+        pages: true,
+        commons: true
+    },
+    extractCSS: true,
+    optimizeCSS: {},   
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new UglifyJSPlugin({
+                test: /\.js($|\?)/i,
+                sourceMap: false,
+                uglifyOptions: {
+                    mangle: {
+                        keep_fnames: false,
+                    },
+                    warnings: false,
+                    compress: {
+                        drop_console: true,
+                    },
+                    output: {
+                        beautify: false,
+                        comments: false,
+                    },
+                }
+            }),
+            new OptimizeCssAssetsPlugin({
+                assetNameRegExp: /\.css$/g,
+                cssProcessor: require('cssnano'),
+                cssProcessorPluginOptions: {
+                    preset: ['default', { 
+                        discardComments: { removeAll: true }
+                    }],
+                },
+                canPrint: false 
+            })
+        ],
+        runtimeChunk: {
+            name: "manifest",
+        },
+        splitChunks: {
+            name: undefined,
+            chunks: 'all',
+            minSize: 30000,
+            maxSize: 244000,
+            maxInitialRequests: Infinity,
+            automaticNameDelimiter: '.',
+            automaticNameMaxLength: 50,
+            cacheGroups: {
+                styles: {
+                    name: 'styles',
+                    test: /\.(css|vue)$/,
+                    chunks: 'all',
+                    enforce: true,
+                    reuseExistingChunk: true
+                },
+                commons: {
+                    name: 'commons',
+                    chunks: 'all',
+                    minChunks: 7,
+                    enforce: true,
+                    reuseExistingChunk: true
+                }
+            }
+        }
+    },
     /*
      ** You can extend webpack config here
      */

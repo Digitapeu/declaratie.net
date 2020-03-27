@@ -59,7 +59,7 @@ export default class Declaration extends Vue {
                         {
                             text: [
                                 this.form.name, ' ', this.form.surname, '\n',
-                                this.form.birthDate, '\n',
+                                `${this.form.day } ${this.form.month} ${this.form.year}`, '\n',
                                 this.form.address.city, ', județul/sectorul ', this.form.address.county, ', strada ', this.form.address.street,  '\n',
                                 this.form.address.flat ? 'bloc ' + this.form.address.flat + ', ' : '', 
                                 this.form.address.floor ? 'etaj ' + this.form.address.floor + ', ' : '',
@@ -172,7 +172,7 @@ export default class Declaration extends Vue {
                         'Prenume : \n',
                         {text: this.form.employee.surname + '\n', bold: true, fontSize: 14},
                         'Data nașterii  : \n',
-                        {text: this.form.employee.birthDate + '\n', bold: true, fontSize: 14},
+                        {text: `${this.form.employee.day } ${this.form.employee.month} ${this.form.employee.year}` + '\n', bold: true, fontSize: 14},
                         'Adresa : \n',
                         {text: this.form.employee.address.city + ', județul/sectorul '+ this.form.employee.address.county + ', '
                         + 'strada ' + this.form.employee.address.street + (this.form.employee.address.flat ? ', bloc ' + this.form.employee.address.flat : '') 

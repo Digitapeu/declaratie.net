@@ -23,9 +23,29 @@
 
                 <el-divider>data nasterii</el-divider>
 
-                <el-form-item prop="birthDate">
-                    <el-date-picker v-model="form.birthDate" format="dd-MM-yyyy" value-format="dd-MM-yyyy" type="date" placeholder="Data nasterii"></el-date-picker>
-                </el-form-item>
+                <el-row class="date">
+                    <!-- <el-form-item prop="birthDate">
+                      <el-date-picker v-model="form.birthDate" format="dd-MM-yyyy" value-format="dd-MM-yyyy" type="date" placeholder="Data nasterii"></el-date-picker>
+                  </el-form-item> -->
+                    <el-form-item prop="day">
+                        <el-select v-model="form.day" placeholder="Ziua">
+                            <el-option v-for="(item,index) in days" :key="`day-${index}`" :label="item" :value="item"></el-option>
+                        </el-select>
+                    </el-form-item>
+
+                    <el-form-item prop="month">
+                        <el-select v-model="form.month" placeholder="Luna">
+                            <el-option v-for="(item,index) in months" :key="`month-${index}`" :label="item" :value="item"></el-option>
+                        </el-select>
+                    </el-form-item>
+
+                    <el-form-item prop="year">
+                        <el-select v-model="form.year" placeholder="Anul">
+                            <el-option v-for="(item,index) in years" :key="`year-${index}`" :label="item" :value="item"></el-option>
+                        </el-select>
+                    </el-form-item>
+
+                </el-row>
 
             </el-row>
         </el-form>
@@ -73,11 +93,11 @@
                 </el-row>
                 <el-row class="split">
                     <el-form-item prop="startTime">
-                        <el-time-select placeholder="inceput" v-model="form.startTime" :picker-options="{ start: '00:00', step: '00:15', end: '23:59'}"></el-time-select>
+                        <el-time-select placeholder="inceput" v-model="form.startTime" :picker-options="{ start: '06:00', step: '00:15', end: '23:59'}"></el-time-select>
                     </el-form-item>
 
                     <el-form-item prop="endTime">
-                        <el-time-select placeholder="sfarsit" v-model="form.endTime" :picker-options="{start: '00:00', step: '00:15', end: '23:59',minTime: form.startTime
+                        <el-time-select placeholder="sfarsit" v-model="form.endTime" :picker-options="{start: '06:00', step: '00:15', end: '23:59',minTime: form.startTime
                   }"></el-time-select>
                     </el-form-item>
                 </el-row>
@@ -161,6 +181,10 @@ export default class Form extends Vue {
         goods: 'asigurarea de bunuri necesare desfășurării activității profesionale.'
     };
 
+    public days: any = Array.from(Array(31).keys()).map(index => index + 1);
+    public months: any = ['Ian', 'Feb', 'Mar', 'Apr', 'Mai', 'Iun', 'Iul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    public years: any = Array.from(Array(102).keys()).map(index => 1900 + index + 1);
+
     public rules: any = [{
             name: [{
                 required: true,
@@ -172,11 +196,21 @@ export default class Form extends Vue {
                 message: 'Te rugam sa-ti introduci prenumele',
                 trigger: 'blur'
             }, ],
-            birthDate: [{
+            day: [{
                 required: true,
-                message: 'Te rugam sa-ti introduci data nasterii',
+                message: 'Camp obligatoriu',
                 trigger: 'blur'
-            }, ]
+            }],
+            month: [{
+                required: true,
+                message: 'Camp obligatoriu',
+                trigger: 'blur'
+            }],
+            year: [{
+                required: true,
+                message: 'Camp obligatoriu',
+                trigger: 'blur'
+            }]
         },
         {
             address: {
@@ -240,6 +274,9 @@ export default class Form extends Vue {
         type: 'normal',
         name: '',
         surname: '',
+        day: '',
+        month: '',
+        year: '',
         address: {
             city: '',
             county: '',
@@ -249,7 +286,6 @@ export default class Form extends Vue {
             floor: '',
             appartment: ''
         },
-        birthDate: '',
         interest: '',
         startTime: '',
         endTime: '',
@@ -322,7 +358,7 @@ export default class Form extends Vue {
         }
 
         id = form.name.toLowerCase() + form.surname.toLowerCase() + form.type.toLowerCase()
-        id = id.replace(/\s/g,'');
+        id = id.replace(/\s/g, '');
 
         return id;
     }
@@ -434,7 +470,9 @@ export default class Form extends Vue {
                 }
             }
 
-            .el-date-editor { width: 100%; }
+            .el-date-editor {
+                width: 100%;
+            }
 
             .descendants {
                 display: flex;
@@ -505,6 +543,21 @@ export default class Form extends Vue {
                         font-size: 18px;
                         padding-left: 20px;
                     }
+                }
+            }
+
+            .date {
+                display: flex;
+                flex-flow: row;
+                justify-content: space-between;
+
+                &:before,
+                &:after {
+                    content: unset;
+                }
+
+                .el-form-item {
+                    width: 30%;
                 }
             }
 

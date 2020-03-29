@@ -1,5 +1,15 @@
 export default {
-  mode: 'spa',
+  mode: 'universal',
+  vue: {
+		config: {
+		  productionTip: false,
+		  devtools: false
+		}
+	},
+	vueMeta: {
+		debounceWait: 10,
+		refreshOnceOnNavigation: true
+	},
   /*
    ** Headers of the page
    */
@@ -50,7 +60,20 @@ export default {
   /*
    ** Build configuration
    */
+  render: {
+    resourceHints: false
+  },
+  generate: {
+    dir: 'docs',
+  },
   build: {
+    minimize: true,
+    splitChunks: {
+        layouts: false,
+        pages: true,
+        commons: true
+    },
+    extractCSS: true,
     transpile: [/^element-ui/],
     /*
      ** You can extend webpack config here

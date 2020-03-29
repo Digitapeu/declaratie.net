@@ -23,6 +23,7 @@ export default {
       },
       { hid: 'digitap-viewport', name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'},
       { hid: 'digitap-description', name: 'description', content: 'Completeaza gratuit declaratia obligatorie pe proprie raspundere, venita in urma ordonantei militare nr. 3'},
+      { hid: 'digitap-keywords', name: 'keywords', content: 'covid19, declaratie, proprie raspundere, romania, cluj, pdf, ordonanta 3'},
       { hid: 'digitap-ogTitle', name: 'og:title', content: 'Declaratia pe raspundere proprie pentru deplasari - declaratie.net'},
       { hid: 'digitap-ogDescription', name: 'og:description', content: 'Completeaza gratuit declaratia obligatorie pe proprie raspundere, venita in urma ordonantei militare nr. 3'},
       { hid: 'digitap-ogImage', name: 'og:image', content: 'https://declaratie.net/share.jpg'},

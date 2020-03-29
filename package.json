@@ -15,6 +15,7 @@
     "nuxt": "^2.0.0",
     "pdfmake": "^0.1.65",
     "portal-vue": "^2.1.7",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "vue-property-decorator": "^8.4.1"
   },
   "devDependencies": {

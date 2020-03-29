@@ -169,7 +169,7 @@ export default class Form extends Vue {
     ];
 
     public reasons: any = {
-        work: 'interes profesional, inclusiv între locuință/gospodărie și locul/locurile de desfășurare a activității profesionale și înapoiDeplasarea între domiciliu și locul de muncă, atunci când activitatea profesională este esențială și nu poate fi organizată sub formă de lucru la distanță sau deplasarea în interes profesional care nu poate fi amânată.',
+        work: 'interes profesional, inclusiv între locuință/gospodărie și locul/locurile de desfășurare a activității profesionale și înapoi',
         consult: 'asistență medicală care nu poate fi amânată și nici realizată de la distanță',
         shopping: 'asigurarea de bunuri care acoperă necesitățile de bază ale persoanelor și animalelor de companie/domestice',
         medicalCare: 'motive justificate, precum îngrijirea/ însoțirea unui minor/copilului, asistența persoanelor vârstnice, bolnave sau cu dizabilități ori deces al unui membru de familie',

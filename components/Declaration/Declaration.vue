@@ -37,7 +37,7 @@
                             strada {{ form.employee.address.street }}, bloc {{ form.employee.address.flat }}, etaj {{ form.employee.address.floor }}, apartament {{ form.employee.address.appartment }}
                         </li>
                         <li>
-                            <strong>Domeniul activității profesionale:</strong> {{ form.employee.name }}
+                            <strong>Domeniul activității profesionale:</strong> {{ form.employee.domain }}
                         </li>
                         <li>
                             <strong>Locul de desfășurare al activității profesionale:</strong> {{ form.employee.workAddress.city }}, județul/sectorul {{ form.employee.workAddress.county }},

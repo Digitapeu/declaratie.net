@@ -18,8 +18,8 @@
     <Backdrop v-if="showForm" ref="drawer" @close="showForm = false" :closeable="true" :fixed="false" :transition="{name: 'slide-up', mode: 'out-in', appear: true}">
         <Drawer :closeable="true" secure="Formulare salvate" title="Selecteaza o declaratie" @close="$refs.drawer.$emit('closeRequest')">
 
-            <ul v-if="forms.length" class="forms">
-                <li v-for="(entry,index) in forms.reverse()" :key="`form-${index}`">
+            <ul v-if="getForms().length" class="forms">
+                <li v-for="(entry,index) in getForms()" :key="`form-${index}`">
                     <el-button v-if="entry.name && entry.surname" type="default" @click="form = entry">
                         {{ entry.name }} {{ entry.surname }}
                         <span class="date">{{ entry.signingDate}}</span>
@@ -66,36 +66,6 @@ import ShareIcon from '@/assets/svg/share.svg?inline';
         Backdrop,
         Declaration,
         ShareIcon
-    },
-    methods: {
-        async share() {
-            console.log('Started sharing...');
-
-            type ShareData = {
-                title?: string;
-                text?: string;
-                url?: string;
-            };
-
-            // extending window.navigator, which has a type of Navigator
-            interface SharableNavigator extends Navigator {
-                share: (data?: ShareData) => Promise<void>;
-            }
-
-            function isSharableNavigator(nav: Navigator): nav is SharableNavigator {
-                return typeof (nav as SharableNavigator).share === 'function';
-            }
-
-            if (isSharableNavigator(window.navigator)) {
-                try {
-                    await window.navigator.share({ // no error
-                        title: `Declaratia pe raspundere proprie pentru deplasari - declaratie.net`,
-                        text: `Completeaza-ti online declaratia. Merge foarte bine pe mobil`,
-                        url: `${window.location.origin}${this.$route.path}?utm_source=share`,
-                    });
-                } catch (e) {}
-            }
-        }
     }
 })
 
@@ -111,12 +81,49 @@ export default class Index extends Vue {
     }
 
     public mounted() {
+        
+    }
+
+    public getForms() {
         if (localStorage.getItem('forms')) {
             try {
-                this.forms = JSON.parse(localStorage.getItem('forms') || '{}');
+                let forms = JSON.parse(localStorage.getItem('forms') || '{}');
+
+                return forms
             } catch (e) {
                 localStorage.removeItem('forms');
             }
+        }
+
+        return []
+    }
+
+    public async share() {
+        console.log('Started sharing...');
+
+        type ShareData = {
+            title?: string;
+            text?: string;
+            url?: string;
+        };
+
+        // extending window.navigator, which has a type of Navigator
+        interface SharableNavigator extends Navigator {
+            share: (data?: ShareData) => Promise<void>;
+        }
+
+        function isSharableNavigator(nav: Navigator): nav is SharableNavigator {
+            return typeof (nav as SharableNavigator).share === 'function';
+        }
+
+        if (isSharableNavigator(window.navigator)) {
+            try {
+                await window.navigator.share({ // no error
+                    title: `Declaratia pe raspundere proprie pentru deplasari - declaratie.net`,
+                    text: `Completeaza-ti online declaratia. Merge foarte bine pe mobil`,
+                    url: `${window.location.origin}${this.$route.path}?utm_source=share`,
+                });
+            } catch (e) {}
         }
     }
 }

@@ -51,6 +51,12 @@ export default {
    */
   modules: [],
   /*
+   ** Generate configuration
+   */
+  generate: {
+    dir: 'docs'
+  },
+  /*
    ** Build configuration
    */
   build: {

@@ -44,9 +44,6 @@
                 </el-form-item>
 
                 <el-row class="date">
-                    <!-- <el-form-item prop="birthDate">
-                      <el-date-picker v-model="form.birthDate" format="dd-MM-yyyy" value-format="dd-MM-yyyy" type="date" placeholder="Data nasterii"></el-date-picker>
-                  </el-form-item> -->
                     <el-form-item prop="employee.day">
                         <el-select v-model="form.employee.day" placeholder="Ziua">
                             <el-option v-for="(item,index) in days" :key="`day-${index}`" :label="item" :value="item"></el-option>

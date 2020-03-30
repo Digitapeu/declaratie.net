@@ -60,8 +60,8 @@ export default {
 
   @media screen and (min-width: 990px){
     width: 700px;
-    height: 400px;
-    top: calc(50% - 200px);
+    height: 250px;
+    top: calc(50% - 125px);
     left: calc(50% - 350px);
     right: unset;
     border-top-left-radius: 4px;

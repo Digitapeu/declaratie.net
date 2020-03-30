@@ -1,6 +1,23 @@
 <template>
     <div>
       <nuxt keep-alive />
+      <transition name="slide-up" mode="out-in" appear>
+        <div id="disclaimer" v-if="disclaimer">
+          <CloseButton @click.native="disclaimer = false" />
+          <h1>Atentiune!</h1>
+          <p>
+            Acest site este dedicat doar celor care detin o imprimanta. 
+            Declaratia pe propria raspundere nu este valabila decat printata si semnata olograf, 
+            ea putand fi printata la finalul completarii formularului.
+          </p>
+          <p>
+            Definitie <strong>OLOGRAF</strong>:
+          </p>
+          <p>
+            <strong>Care este scris în întregime de mâna autorului și semnat de el însuși.</strong>
+          </p>
+        </div>
+      </transition>
       <footer>
         Aplicatie oferita gratuit de <br/> <a href="https://digitap.eu" target="_blank"><Digitap /></a>de la Cluj + Bucuresti
       </footer>
@@ -10,14 +27,52 @@
 
 <script>
 import Digitap from '@/assets/svg/digitap.logo.simplified.svg?inline';
+import CloseButton from '@/components/CloseButton';
 export default {
   components: {
-    Digitap
+    Digitap,
+    CloseButton
+  },
+  data(){
+    return {
+      disclaimer: false
+    }
+  },
+  mounted(){
+    setTimeout(() => {
+      this.disclaimer = true;
+    }, 1000);
   }
 }
 </script>
 
 <style lang="less">
+
+#disclaimer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  background: gold;
+  z-index: 100;
+
+  @media screen and (min-width: 990px){
+    width: 700px;
+    height: 400px;
+    top: calc(50% - 200px);
+    left: calc(50% - 350px);
+    right: unset;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+
+  p {
+    margin: 0 0 20px;
+  }
+}
+
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;

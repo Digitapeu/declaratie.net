@@ -4,6 +4,9 @@
 
 Aplicatia este dezvoltata si intretinuta de [Digitap](https://digitap.eu), o companie clujeana. Codul sursa este public si poate fi verificat de oricine.
 
+Conform ultimelor prevederi, declaratia pe proprie raspundere trebuie semnata olograf, declaratia completata putand fi imprimata la finalul completarii
+ei.
+
 ## Build Setup
 
 ```bash

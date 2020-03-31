@@ -350,33 +350,13 @@ export default class Form extends Vue {
         return i;
     }
 
-    private uid(form: any) {
-        let id: string
-
-        if (!form.type || form.type === 'employer') {
-            return false
-        }
-
-        id = form.name.toLowerCase() + form.surname.toLowerCase() + form.type.toLowerCase()
-        id = id.replace(/\s/g, '');
-
-        return id;
-    }
-
     public onFormSave() {
         // Save the signing date (now)
         let dateTime = new Date();
         this.form.signingDate = dateTime.getUTCDate() + "/" + (dateTime.getMonth() + 1) + "/" +
             dateTime.getFullYear() + " " + this.addZero(dateTime.getHours()) + ":" + this.addZero(dateTime.getMinutes())
 
-        // Check if we've got a record for this person already
-        let foundIndex = this.forms.findIndex((x: any) => this.uid(x) === this.uid(this.form))
-
-        if (foundIndex !== -1) {
-            this.forms[foundIndex] = this.form;
-        } else {
-            this.forms.push(this.form)
-        }
+        this.forms.push(this.form)
 
         // Store the new forms array in localstorage
         let parsed: string = JSON.stringify(this.forms)

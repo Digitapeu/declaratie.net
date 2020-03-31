@@ -203,7 +203,7 @@ export default class Declaration extends Vue {
                     columns: [
                         {
                             text: [
-                                {text: 'Perioada: ', bold: true}, this.form.signingDate, '\n',  
+                                {text: 'Perioada: ', bold: true}, this.form.startTime, ' - ', this.form.endTime, '\n',  
                             ]
                         },
                         {

@@ -74,8 +74,6 @@ export default class Index extends Vue {
 
     public form: any = {};
 
-    public forms: any = [];
-
     public created() {
         // When the component gets created.
     }

@@ -294,22 +294,12 @@ export default class Form extends Vue {
         reasons: []
     };
 
-    public forms: any = [];
-
     public created() {
         // When the component gets created.
     }
 
     public mounted() {
         this.refreshForm();
-
-        if (localStorage.getItem('forms')) {
-            try {
-                this.forms = JSON.parse(localStorage.getItem('forms') || '{}');
-            } catch (e) {
-                localStorage.removeItem('forms');
-            }
-        }
     }
 
     //step < buttonLabels.length ? step++ : onFormSave()
@@ -356,10 +346,21 @@ export default class Form extends Vue {
         this.form.signingDate = dateTime.getUTCDate() + "/" + (dateTime.getMonth() + 1) + "/" +
             dateTime.getFullYear() + " " + this.addZero(dateTime.getHours()) + ":" + this.addZero(dateTime.getMinutes())
 
-        this.forms.push(this.form)
+        // Get all the forms and add the new one
+        let forms: any = []
+
+        if (localStorage.getItem('forms')) {
+            try {
+                forms = JSON.parse(localStorage.getItem('forms') || '{}');
+            } catch (e) {
+                localStorage.removeItem('forms');
+            }
+        }
+
+        forms.push(this.form)
 
         // Store the new forms array in localstorage
-        let parsed: string = JSON.stringify(this.forms)
+        let parsed: string = JSON.stringify(forms)
         localStorage.setItem('forms', parsed)
         this.isCreated = true;
     }

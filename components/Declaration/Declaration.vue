@@ -105,11 +105,11 @@
                 <el-row id="buttons">
                     <el-button type="primary" @click="onDocumentPrint()" plain>Print</el-button>
                     <el-button type="warning" @click="onDocumentSave()" plain>Pdf</el-button>
-                    <nuxt-link v-if="$route.name != 'form' && $route.name != 'form-employer' && form.type != 'employer'" class="el-button el-button--success is-plain" :to="{name: 'form', params: { form: form }}" tag="button">Duplica</nuxt-link>
-                    <nuxt-link v-else-if="$route.name != 'form' && $route.name != 'form-employer' && form.type == 'employer'" class="el-button el-button--success is-plain" :to="{name: 'form-employer', params: { form: form }}" tag="button">Duplica</nuxt-link>
-                    <span v-else @click="$refs.drawer.$emit('closeRequest')">
-                        <nuxt-link class="el-button el-button--success is-plain" :to="{path: '/'}" tag="button">Restart</nuxt-link>
-                    </span>
+                    
+                    <nuxt-link v-if="$route.name != 'form' && $route.name != 'form-employer' && form.type != 'employer'" class="el-button el-button--success is-plain" :to="{name: 'form', params: { form: form }}" tag="button"><span @click="$refs.drawer.$emit('closeRequest')">Duplica</span></nuxt-link>
+                    <nuxt-link v-else-if="$route.name != 'form' && $route.name != 'form-employer' && form.type == 'employer'" class="el-button el-button--success is-plain" :to="{name: 'form-employer', params: { form: form }}" tag="button"><span @click="$refs.drawer.$emit('closeRequest')">Duplica</span></nuxt-link>
+                    <nuxt-link v-else class="el-button el-button--success is-plain" :to="{path: '/'}" tag="button"><span @click="$refs.drawer.$emit('closeRequest')">Restart</span></nuxt-link>
+                    
                 </el-row>
             </template>
 
